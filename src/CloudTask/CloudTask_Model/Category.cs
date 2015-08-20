@@ -9,16 +9,27 @@ using System.Runtime.Serialization.Json;
 namespace CloudTask_Model
 {
      [DataContract]
-    class Category
+    public class Category
     {
+        #region Members
         [DataMember]
         public string CategoryName { get; set; }
+
         [DataMember]
         public List<Node> Nodes { get; set; }
+        #endregion Members
 
+        #region Constructors
         public Category()
         {
             Nodes = new List<Node>();
         }
+
+        public Category(string categoryName)
+            :this()
+        {
+            CategoryName = categoryName;
+        }
+        #endregion Constructors
     }
 }

@@ -2,8 +2,17 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudTask_GUI", "CloudTask\CloudTask_GUI.csproj", "{F021DFF8-0666-4CB7-9AD5-A93AED61F2D7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{59F31545-5F3E-4C16-ACFD-B0D8BC2CDACD} = {59F31545-5F3E-4C16-ACFD-B0D8BC2CDACD}
+		{05A395FA-1245-43BE-AC71-2EEBA0326013} = {05A395FA-1245-43BE-AC71-2EEBA0326013}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudTask_Model", "CloudTask_Model\CloudTask_Model.csproj", "{05A395FA-1245-43BE-AC71-2EEBA0326013}"
+	ProjectSection(ProjectDependencies) = postProject
+		{59F31545-5F3E-4C16-ACFD-B0D8BC2CDACD} = {59F31545-5F3E-4C16-ACFD-B0D8BC2CDACD}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log", "Logger\Log.csproj", "{59F31545-5F3E-4C16-ACFD-B0D8BC2CDACD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +28,10 @@ Global
 		{05A395FA-1245-43BE-AC71-2EEBA0326013}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05A395FA-1245-43BE-AC71-2EEBA0326013}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05A395FA-1245-43BE-AC71-2EEBA0326013}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59F31545-5F3E-4C16-ACFD-B0D8BC2CDACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59F31545-5F3E-4C16-ACFD-B0D8BC2CDACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59F31545-5F3E-4C16-ACFD-B0D8BC2CDACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59F31545-5F3E-4C16-ACFD-B0D8BC2CDACD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

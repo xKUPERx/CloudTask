@@ -10,17 +10,26 @@ namespace CloudTask_Model
     [DataContract]
     public class Node
     {
+        #region Members
+
         [DataMember]
         public string TaskName { get; set; }
+
         [DataMember]
         public string TaskText { get; set; }
+
         [DataMember]
         public bool IsDone{ get; set; }
+
         [DataMember]
         public System.DateTime StartDate{ get; set;}
+
         [DataMember]
         public System.DateTime FinishDate { get; set; }
 
+        #endregion Members
+
+        #region Constructors
         public Node()
         { }
 
@@ -32,6 +41,6 @@ namespace CloudTask_Model
             StartDate = startDate;
             FinishDate = finishDate;
         }
-
+        #endregion Constructors
     }
 }

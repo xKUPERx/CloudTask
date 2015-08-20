@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.IO;
-
+using Log;
 
 namespace CloudTask_Model
 {
@@ -14,29 +14,32 @@ namespace CloudTask_Model
     {
         static void Main(string[] args)
         {
-            System.DateTime toDay = System.DateTime.Today;
-            Node testNode = new Node("task", "Do some shit", false, toDay, toDay);
-            Category categoryNode = new Category();
-            categoryNode.Nodes.Add(testNode);
-            categoryNode.Nodes.Add(testNode);
-            categoryNode.Nodes.Add(testNode);
+            try
+            {
+                Logger.WriteDebugMessage("Test");
+            }
+            catch (Exception ex)
+            {
+                string xx = ex.ToString();
+            }
+            //Case testCase = new Case("Test Case");
+            //testCase.Categories.Add(new Category("First Category"));
+            //testCase.Categories.Add(new Category("Second Category"));
 
-            MemoryStream stream1 = new MemoryStream();
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Category));
+            //System.DateTime toDay = System.DateTime.Today;
+            //foreach (Category category in testCase.Categories)
+            //{
+            //    category.Nodes.Add(new Node("task 1", "Do some shit", false, toDay, toDay));
+            //    category.Nodes.Add(new Node("task 2", "Do some shit", true, toDay, toDay));
+            //}
 
-            ser.WriteObject(stream1, categoryNode);
+            //testCase.Nodes.Add(new Node("task 3", "Do some shit", false, toDay, toDay)); 
+            //testCase.Nodes.Add(new Node("task 4", "Do some shit", false, toDay, toDay));
 
-            stream1.Position = 0;
-            StreamReader sr = new StreamReader(stream1);
-            Console.Write("JSON form of Person object: ");
-            Console.WriteLine(sr.ReadToEnd());
-
-            stream1.Position = 0;
-            Category categoryNode2 = (Category)ser.ReadObject(stream1);
-            
-            stream1.Position = 0;
-            Node testNode2 = (Node)ser.ReadObject(stream1);
-
+            //JsonParser jsonparser = new JsonParser();
+            //jsonparser.SaveCaseToFile(ref testCase);
+            //Case newTestCase;
+            //jsonparser.LoadCaseFromFile(out newTestCase);
 
         }
     }
