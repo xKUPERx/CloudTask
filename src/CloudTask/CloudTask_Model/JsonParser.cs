@@ -41,8 +41,6 @@ namespace CloudTask_Model
                     jsonSerializer.WriteObject(outPutFileStream, currentCase);
                     outPutFileStream.Flush();
                     outPutFileStream.Close();
-
-                    Logger.WriteDebugMessage("DEBUG MODE RUSH!!!");
                 }
             }
             catch(Exception ex)
