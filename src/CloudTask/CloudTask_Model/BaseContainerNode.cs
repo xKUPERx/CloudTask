@@ -5,11 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
+
 namespace CloudTask_Model
 {
-    [DataContract]
-    public class Node : INode
+    public abstract class BaseContainerNode : INode
     {
+        //public void AddChild(IComponent child);
+        //public void RemoveChild(IComponent child);
+        //public bool isContainer { get; private set; }
+
+
         #region Members
         [DataMember]
         public string ID { get; private set; }
@@ -20,45 +25,27 @@ namespace CloudTask_Model
         [DataMember]
         public string Name { get; set; }
 
-        [DataMember]
-        public string TaskText { get; set; }
-
-        [DataMember]
-        public bool IsDone{ get; set; }
-
-        [DataMember]
-        public System.DateTime StartDate{ get; set;}
-
-        [DataMember]
-        public System.DateTime FinishDate { get; set; }
-
         #endregion Members
 
         #region Constructors
 
-        public Node(INode parent, string taskName, string taskText, bool isDone, System.DateTime startDate, System.DateTime finishDate)
+        public BaseContainerNode(INode parent = null, string ContainerName = "Default Container")
         {
             ID = Guid.NewGuid().ToString();
+            Name = ContainerName;
             Parent = parent;
-            Name = taskName;
-            TaskText = taskText;
-            IsDone = isDone;
-            StartDate = startDate;
-            FinishDate = finishDate;
         }
 
         #endregion Constructors
 
         #region Methods
-
         public virtual bool IsContainer
         {
             get
             {
-                return false;
+                return true;
             }
         }
-        #en
-        dregion Methods
+        #endregion Methods
     }
 }
