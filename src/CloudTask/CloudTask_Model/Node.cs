@@ -21,6 +21,9 @@ namespace CloudTask_Model
         public string Name { get; set; }
 
         [DataMember]
+        public INodeCollection Nodes { get { return null; } }
+
+        [DataMember]
         public string TaskText { get; set; }
 
         [DataMember]
@@ -58,7 +61,8 @@ namespace CloudTask_Model
                 return false;
             }
         }
-        #en
-        dregion Methods
+
+
+        #endregion Methods
     }
 }

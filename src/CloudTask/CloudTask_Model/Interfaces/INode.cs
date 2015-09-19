@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Collections;
-using System.Collections.Generic;
+using System.Collections;
 
 
 namespace CloudTask_Model
@@ -125,7 +125,7 @@ namespace CloudTask_Model
     public interface INode
     {
         [DataMember]
-        public string ID { get; private set; }
+        string ID { get;}
 
         [DataMember]
         INode Parent { get; set; }
@@ -136,9 +136,7 @@ namespace CloudTask_Model
         [DataMember]
         INodeCollection Nodes { get; }
 
-        public void AddChild(INode child);
-        public void RemoveChild(INode child);
-        public bool IsContainer { get; }
+        bool IsContainer { get; }
 
     }
 }

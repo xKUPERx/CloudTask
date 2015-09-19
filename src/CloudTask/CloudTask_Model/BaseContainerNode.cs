@@ -25,6 +25,8 @@ namespace CloudTask_Model
         [DataMember]
         public string Name { get; set; }
 
+        [DataMember]
+        public INodeCollection Nodes { get; private set; }
         #endregion Members
 
         #region Constructors
@@ -34,6 +36,7 @@ namespace CloudTask_Model
             ID = Guid.NewGuid().ToString();
             Name = ContainerName;
             Parent = parent;
+            Nodes = new INodeCollection();
         }
 
         #endregion Constructors

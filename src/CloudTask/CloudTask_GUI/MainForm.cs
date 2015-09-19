@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Resources;
+using CloudTask_Model;
+using DevExpress.XtraTreeList;
+using DevExpress.XtraTreeList.Columns;
 
 namespace CloudTask_GUI
 {
@@ -18,14 +21,57 @@ namespace CloudTask_GUI
             InitializeComponent();
             appPath = Application.StartupPath;
 
-            string resxFile = @"F:\CloudTask\trunk\src\CloudTask\CloudTask_Model\Resources\HeaderResources_EN.resx";
+            //string resxFile = @"F:\CloudTask\trunk\src\CloudTask\CloudTask_Model\Resources\HeaderResources_EN.resx";
+            #region TestCase
+            Case currentCase = new Case();
+            Category first_lvl_category_1 = new Category(null,"First level category");
+            Category second_lvl_category_1 = new Category(first_lvl_category_1, "Second level category");
+            Category Third_lvl_category_1 = new Category(second_lvl_category_1, "Third level category");
+            first_lvl_category_1.Nodes.Add(second_lvl_category_1);
+            second_lvl_category_1.Nodes.Add(Third_lvl_category_1);
 
+            first_lvl_category_1.Nodes.Add(new Node(first_lvl_category_1, "Test task 1 level 1", "new", false, System.DateTime.Now, System.DateTime.Now));
+            first_lvl_category_1.Nodes.Add(new Node(first_lvl_category_1, "Test task 2 level 1", "new", false, System.DateTime.Now, System.DateTime.Now));
+            first_lvl_category_1.Nodes.Add(new Node(first_lvl_category_1, "Test task 3 level 1", "new", false, System.DateTime.Now, System.DateTime.Now));
 
-            using (ResXResourceSet resxSet = new ResXResourceSet(resxFile))
-            {
-                // Retrieve the string resource for the title.
-                this.Text = resxSet.GetString("ApplicationTitle");
-            }
+            second_lvl_category_1.Nodes.Add(new Node(second_lvl_category_1, "Test task 1 level 2", "new", false, System.DateTime.Now, System.DateTime.Now));
+            second_lvl_category_1.Nodes.Add(new Node(second_lvl_category_1, "Test task 2 level 2", "new", false, System.DateTime.Now, System.DateTime.Now));
+
+            Third_lvl_category_1.Nodes.Add(new Node(Third_lvl_category_1, "Test task 1 level 3", "new", false, System.DateTime.Now, System.DateTime.Now));
+            Third_lvl_category_1.Nodes.Add(new Node(Third_lvl_category_1, "Test task 2 level 3", "new", false, System.DateTime.Now, System.DateTime.Now));
+
+            Category first_lvl_category_2 = new Category(null, "First level category");
+            Category second_lvl_category_2 = new Category(first_lvl_category_2, "Second level category");
+            Category Third_lvl_category_2 = new Category(second_lvl_category_2, "Third level category");
+            first_lvl_category_2.Nodes.Add(second_lvl_category_2);
+            second_lvl_category_2.Nodes.Add(Third_lvl_category_2);
+
+            first_lvl_category_2.Nodes.Add(new Node(first_lvl_category_2, "Test task 1 level 1", "new", false, System.DateTime.Now, System.DateTime.Now));
+            first_lvl_category_2.Nodes.Add(new Node(first_lvl_category_2, "Test task 2 level 1", "new", false, System.DateTime.Now, System.DateTime.Now));
+            first_lvl_category_2.Nodes.Add(new Node(first_lvl_category_2, "Test task 3 level 1", "new", false, System.DateTime.Now, System.DateTime.Now));
+
+            second_lvl_category_2.Nodes.Add(new Node(second_lvl_category_2, "Test task 1 level 2", "new", false, System.DateTime.Now, System.DateTime.Now));
+            second_lvl_category_2.Nodes.Add(new Node(second_lvl_category_2, "Test task 2 level 2", "new", false, System.DateTime.Now, System.DateTime.Now));
+
+            Third_lvl_category_2.Nodes.Add(new Node(Third_lvl_category_2, "Test task 1 level 3", "new", false, System.DateTime.Now, System.DateTime.Now));
+            Third_lvl_category_2.Nodes.Add(new Node(Third_lvl_category_2, "Test task 2 level 3", "new", false, System.DateTime.Now, System.DateTime.Now));
+
+            currentCase.Nodes.Add(first_lvl_category_1);
+            currentCase.Nodes.Add(first_lvl_category_2);
+            TreeListCaseAdapter treeListCaseAdapter = new TreeListCaseAdapter(currentCase);
+            #endregion TestCase
+
+            TreeListColumn col1 = new TreeListColumn();
+            col1.Caption = "Name";
+            col1.VisibleIndex = 0;
+            treeList1.Columns.AddRange(new TreeListColumn[] { col1 });
+            treeList1.DataSource = treeListCaseAdapter;
+            //treeList1.StateImageList = IMAGES
+            //using (ResXResourceSet resxSet = new ResXResourceSet(resxFile))
+            //{
+            //    // Retrieve the string resource for the title.
+            //    this.Text = resxSet.GetString("ApplicationTitle");
+            //}
             //this.Text = CommanderControlLib.CommonProjectDefinitions.GetApplicationTitle;
         }
     }

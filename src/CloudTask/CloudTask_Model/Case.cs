@@ -9,18 +9,21 @@ using System.Runtime.Serialization.Json;
 namespace CloudTask_Model
 {
    [DataContract]
-   public class Case
+   public class Case : INode
    {
        #region Members
 
        [DataMember]
-       public string CaseName { get; set; }
+       public string ID { get; private set; }
 
        [DataMember]
-       public List<Category> Categories { get; set; }
+       public INode Parent { get; set; }
 
        [DataMember]
-       public List<Node> Nodes { get; set; }
+       public string Name { get; set; }
+
+       [DataMember]
+       public INodeCollection Nodes { get; private set; }
 
        #endregion Members
 
@@ -28,11 +31,22 @@ namespace CloudTask_Model
 
        public Case(string caseName = "Default Case")
        {
-           CaseName = caseName;
-           Categories = new List<Category>();
-           Nodes = new List<Node>();
+           ID = Guid.NewGuid().ToString();
+           Parent = null;
+           Name = caseName;         
+           Nodes = new INodeCollection();
        }
 
        #endregion Constructors
+
+       #region Methods
+       public virtual bool IsContainer
+       {
+           get
+           {
+               return true;
+           }
+       }
+       #endregion Methods
    }
 }
