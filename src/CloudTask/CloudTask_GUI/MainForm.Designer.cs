@@ -48,21 +48,22 @@ namespace CloudTask_GUI
             this.xtraUserControl1.Size = new System.Drawing.Size(1197, 571);
             this.xtraUserControl1.TabIndex = 0;
             // 
-            // treeList1
+            // treeList
             // 
             this.treeList.Location = new System.Drawing.Point(32, 158);
-            this.treeList.Name = "treeList1";
+            this.treeList.Name = "treeList";
             this.treeList.Size = new System.Drawing.Size(342, 470);
-            this.treeList.TabIndex = 1;            
+            this.treeList.TabIndex = 1;
             // 
-            // sharedImageCollection1
-            // 
-            // 
+            // sharedTreeListImageCollection
             // 
             // 
-            this.sharedTreeListImageCollection.ImageSource.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("sharedImageCollection1.ImageSource.ImageStream")));
-            this.sharedTreeListImageCollection.ImageSource.Images.SetKeyName(Constants.TREE_LIST_CATEGORY_INDEX, "TreeListCategoryIcon.ico");
-            this.sharedTreeListImageCollection.ImageSource.Images.SetKeyName(Constants.TREE_LIST_NOTE_INDEX, "TreeListNoteIcon.ico");
+            // 
+            // 
+            this.sharedTreeListImageCollection.ImageSource.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("sharedTreeListImageCollection.ImageSource.ImageStream")));
+            this.sharedTreeListImageCollection.ImageSource.Images.SetKeyName(0, "TreeListСaseIcon.ico");
+            this.sharedTreeListImageCollection.ImageSource.Images.SetKeyName(1, "TreeListCategoryIcon.ico");
+            this.sharedTreeListImageCollection.ImageSource.Images.SetKeyName(2, "TreeListNoteIcon.ico");
             this.sharedTreeListImageCollection.ParentControl = this;
             // 
             // MainForm
