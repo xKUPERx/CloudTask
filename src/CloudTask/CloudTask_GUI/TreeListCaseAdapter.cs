@@ -12,25 +12,30 @@ namespace CloudTask_GUI
 {
     public class TreeListCaseAdapter : TreeList.IVirtualTreeListData
     {
-    // Represents a sample Business Object 
-        //public event GetStateImageEventHandler GetStateImage;
+        #region Members
 
-      
-        public Case m_currentCase;
-        private INodeCollection Cases;
+        public INodeCollection m_currentCases {get; set;}
+
+        #endregion Members
+
+        #region Constructors
+
         public TreeListCaseAdapter(Case newCase)
         {
-            m_currentCase = newCase;
-            Cases = new INodeCollection();
-            Cases.Add(m_currentCase);
+            m_currentCases = new INodeCollection();
+            m_currentCases.Add(newCase);
         }
+
+        #endregion Constructors
+
+        #region Methods
 
         void TreeList.IVirtualTreeListData.VirtualTreeGetChildNodes(
         VirtualTreeGetChildNodesInfo info)
         {
             if (info.Node is TreeListCaseAdapter)
             {
-                info.Children = ((TreeListCaseAdapter)info.Node).Cases;
+                info.Children = ((TreeListCaseAdapter)info.Node).m_currentCases;
             }
             else
             {
@@ -38,6 +43,7 @@ namespace CloudTask_GUI
                 
             }
         }
+
         void TreeList.IVirtualTreeListData.VirtualTreeGetCellValue(
         VirtualTreeGetCellValueInfo info)
         {
@@ -60,9 +66,13 @@ namespace CloudTask_GUI
         {
             INode nodeData = e.Node.GetValue(CloudTask_Model.Resources.Headers.ResourceManager.GetString("TreeListColumnOriginalNote")) as INode;
             if (nodeData != null)
+            {
                 e.NodeImageIndex = nodeData.StateImageIndex;
-          
+            }
+
         }
+
+        #endregion Methods
     }
 }
 

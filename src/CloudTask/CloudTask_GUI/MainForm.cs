@@ -74,6 +74,15 @@ namespace CloudTask_GUI
             treeList.StateImageList = sharedTreeListImageCollection;
             this.treeList.GetStateImage += new DevExpress.XtraTreeList.GetStateImageEventHandler(treeListCaseAdapter.TreeListGetStateImage);
 
+            
+            //this.treeList.FocusedNodeChanged +=
+//Transfer note to the table grid.
+    //            private void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e) {
+    ////... 
+    //this.BeginInvoke(new MethodInvoker(delegate {
+    //    treeList1.FocusedNode = myTargetNode;
+    //}));
+            
             //treeList1.StateImageList = IMAGES
             //using (ResXResourceSet resxSet = new ResXResourceSet(resxFile))
             //{
