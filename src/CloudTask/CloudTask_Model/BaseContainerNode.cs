@@ -17,16 +17,19 @@ namespace CloudTask_Model
 
         #region Members
         [DataMember]
-        public string ID { get; private set; }
+        virtual public string ID { get; private set; }
 
         [DataMember]
-        public INode Parent { get; set; }
+        virtual public INode Parent { get; set; }
 
         [DataMember]
-        public string Name { get; set; }
+        virtual public string Name { get; set; }
 
         [DataMember]
-        public INodeCollection Nodes { get; private set; }
+        virtual public int StateImageIndex { get; set; }
+
+        [DataMember]
+        virtual public INodeCollection Nodes { get; private set; }
         #endregion Members
 
         #region Constructors
@@ -37,6 +40,7 @@ namespace CloudTask_Model
             Name = ContainerName;
             Parent = parent;
             Nodes = new INodeCollection();
+            StateImageIndex = Constants.TREE_LIST_BASE_CONTAINER_INDEX;
         }
 
         #endregion Constructors

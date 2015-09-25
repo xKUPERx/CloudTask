@@ -13,6 +13,8 @@ namespace CloudTask_Model
     {
         #region Members
 
+        [DataMember]
+        override public int StateImageIndex { get; set; }
 
         #endregion Members
 
@@ -20,7 +22,9 @@ namespace CloudTask_Model
 
         public Category(INode parent = null, string CategoryName = "Default Category")
             : base(parent, CategoryName)
-        {}
+        {
+            StateImageIndex = Constants.TREE_LIST_CATEGORY_INDEX;
+        }
 
         #endregion Constructors      
     }

@@ -25,6 +25,8 @@ namespace CloudTask_Model
        [DataMember]
        public INodeCollection Nodes { get; private set; }
 
+       [DataMember]
+       virtual public int StateImageIndex { get; set; }
        #endregion Members
 
        #region Constructors
@@ -35,6 +37,7 @@ namespace CloudTask_Model
            Parent = null;
            Name = caseName;         
            Nodes = new INodeCollection();
+           StateImageIndex = Constants.TREE_LIST_CASE_INDEX;
        }
 
        #endregion Constructors

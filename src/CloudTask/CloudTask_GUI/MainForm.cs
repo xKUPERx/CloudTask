@@ -61,11 +61,19 @@ namespace CloudTask_GUI
             TreeListCaseAdapter treeListCaseAdapter = new TreeListCaseAdapter(currentCase);
             #endregion TestCase
 
-            TreeListColumn col1 = new TreeListColumn();
-            col1.Caption = "Name";
-            col1.VisibleIndex = 0;
-            treeList1.Columns.AddRange(new TreeListColumn[] { col1 });
-            treeList1.DataSource = treeListCaseAdapter;
+            TreeListColumn noteNameColumn = new TreeListColumn();
+            noteNameColumn.Caption = CloudTask_Model.Resources.Headers.ResourceManager.GetString("TreeListColumnName");           
+            noteNameColumn.VisibleIndex = 0;          
+
+            TreeListColumn originalNoteColumn = new TreeListColumn();
+            originalNoteColumn.Caption = CloudTask_Model.Resources.Headers.ResourceManager.GetString("TreeListColumnOriginalNote"); 
+            originalNoteColumn.Visible = false;
+
+            treeList.Columns.AddRange(new TreeListColumn[] { noteNameColumn, originalNoteColumn });
+            treeList.DataSource = treeListCaseAdapter;
+            treeList.StateImageList = sharedTreeListImageCollection;
+            this.treeList.GetStateImage += new DevExpress.XtraTreeList.GetStateImageEventHandler(treeListCaseAdapter.TreeListGetStateImage);
+
             //treeList1.StateImageList = IMAGES
             //using (ResXResourceSet resxSet = new ResXResourceSet(resxFile))
             //{

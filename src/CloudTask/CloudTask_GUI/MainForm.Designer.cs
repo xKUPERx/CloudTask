@@ -1,4 +1,5 @@
-﻿namespace CloudTask_GUI
+﻿using CloudTask_Model;
+namespace CloudTask_GUI
 {
     partial class MainForm
     {
@@ -28,9 +29,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.xtraUserControl1 = new DevExpress.XtraEditors.XtraUserControl();
-            this.treeList1 = new DevExpress.XtraTreeList.TreeList();
-            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
+            this.treeList = new DevExpress.XtraTreeList.TreeList();
+            this.sharedTreeListImageCollection = new DevExpress.Utils.SharedImageCollection(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.treeList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sharedTreeListImageCollection)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sharedTreeListImageCollection.ImageSource)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraUserControl1
@@ -44,10 +50,20 @@
             // 
             // treeList1
             // 
-            this.treeList1.Location = new System.Drawing.Point(32, 158);
-            this.treeList1.Name = "treeList1";
-            this.treeList1.Size = new System.Drawing.Size(342, 470);
-            this.treeList1.TabIndex = 1;
+            this.treeList.Location = new System.Drawing.Point(32, 158);
+            this.treeList.Name = "treeList1";
+            this.treeList.Size = new System.Drawing.Size(342, 470);
+            this.treeList.TabIndex = 1;            
+            // 
+            // sharedImageCollection1
+            // 
+            // 
+            // 
+            // 
+            this.sharedTreeListImageCollection.ImageSource.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("sharedImageCollection1.ImageSource.ImageStream")));
+            this.sharedTreeListImageCollection.ImageSource.Images.SetKeyName(Constants.TREE_LIST_CATEGORY_INDEX, "TreeListCategoryIcon.ico");
+            this.sharedTreeListImageCollection.ImageSource.Images.SetKeyName(Constants.TREE_LIST_NOTE_INDEX, "TreeListNoteIcon.ico");
+            this.sharedTreeListImageCollection.ParentControl = this;
             // 
             // MainForm
             // 
@@ -56,11 +72,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 700);
-            this.Controls.Add(this.treeList1);
+            this.Controls.Add(this.treeList);
             this.Controls.Add(this.xtraUserControl1);
             this.Name = "MainForm";
             this.Text = "CloudTask";
-            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sharedTreeListImageCollection.ImageSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sharedTreeListImageCollection)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -68,7 +86,8 @@
         #endregion
 
         private DevExpress.XtraEditors.XtraUserControl xtraUserControl1;
-        private DevExpress.XtraTreeList.TreeList treeList1;
+        private DevExpress.XtraTreeList.TreeList treeList;
+        private DevExpress.Utils.SharedImageCollection sharedTreeListImageCollection;
 
 
 

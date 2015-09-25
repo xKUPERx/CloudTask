@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -53,22 +54,22 @@
     <Compile Include="BaseContainerNode.cs" />
     <Compile Include="Case.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Interfaces\INode.cs" />
     <Compile Include="JsonParser.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\HeaderResources_EN.Designer.cs">
+    <Compile Include="Resources\Headers.Designer.cs">
+      <DependentUpon>Headers.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HeaderResources_EN.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Logger\Log.csproj">
       <Project>{59f31545-5f3e-4c16-acfd-b0d8bc2cdacd}</Project>
@@ -76,9 +77,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\HeaderResources_EN.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>HeaderResources_EN.Designer.cs</LastGenOutput>
+    <EmbeddedResource Include="Resources\Headers.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Headers.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

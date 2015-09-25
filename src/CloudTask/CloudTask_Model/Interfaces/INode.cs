@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Collections;
-using System.Collections;
-
 
 namespace CloudTask_Model
 {
@@ -134,8 +132,12 @@ namespace CloudTask_Model
         string Name { get; set; }
 
         [DataMember]
+        int StateImageIndex { get; set; }
+
+        [DataMember]
         INodeCollection Nodes { get; }
 
+        [DataMember]
         bool IsContainer { get; }
 
     }

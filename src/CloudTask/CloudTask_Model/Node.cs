@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
+
+
 namespace CloudTask_Model
 {
     [DataContract]
@@ -12,28 +14,31 @@ namespace CloudTask_Model
     {
         #region Members
         [DataMember]
-        public string ID { get; private set; }
+        virtual public string ID { get; private set; }
 
         [DataMember]
-        public INode Parent { get; set; }
+        virtual public INode Parent { get; set; }
 
         [DataMember]
-        public string Name { get; set; }
+        virtual public string Name { get; set; }      
 
         [DataMember]
-        public INodeCollection Nodes { get { return null; } }
+        virtual public INodeCollection Nodes { get { return null; } }
 
         [DataMember]
-        public string TaskText { get; set; }
+        virtual public string TaskText { get; set; }
 
         [DataMember]
-        public bool IsDone{ get; set; }
+        virtual public bool IsDone { get; set; }
 
         [DataMember]
-        public System.DateTime StartDate{ get; set;}
+        virtual public System.DateTime StartDate { get; set; }
 
         [DataMember]
-        public System.DateTime FinishDate { get; set; }
+        virtual public System.DateTime FinishDate { get; set; }
+
+        [DataMember]
+        virtual public int StateImageIndex { get; set; }
 
         #endregion Members
 
@@ -48,6 +53,7 @@ namespace CloudTask_Model
             IsDone = isDone;
             StartDate = startDate;
             FinishDate = finishDate;
+            StateImageIndex = Constants.TREE_LIST_NOTE_INDEX;
         }
 
         #endregion Constructors
