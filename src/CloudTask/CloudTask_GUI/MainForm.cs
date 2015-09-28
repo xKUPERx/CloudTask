@@ -10,6 +10,7 @@ using System.Resources;
 using CloudTask_Model;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Columns;
+//using DevExpress.XtraGrid.Columns;
 
 namespace CloudTask_GUI
 {
@@ -57,10 +58,10 @@ namespace CloudTask_GUI
             Third_lvl_category_2.Nodes.Add(new Node(Third_lvl_category_2, "Test task 2 level 3", "new", false, System.DateTime.Now, System.DateTime.Now));
 
             currentCase.Nodes.Add(first_lvl_category_1);
-            currentCase.Nodes.Add(first_lvl_category_2);
-            TreeListCaseAdapter treeListCaseAdapter = new TreeListCaseAdapter(currentCase);
+            currentCase.Nodes.Add(first_lvl_category_2);            
             #endregion TestCase
 
+            TreeListCaseAdapter treeListCaseAdapter = new TreeListCaseAdapter(currentCase);
             TreeListColumn noteNameColumn = new TreeListColumn();
             noteNameColumn.Caption = CloudTask_Model.Resources.Headers.ResourceManager.GetString("TreeListColumnName");           
             noteNameColumn.VisibleIndex = 0;          
@@ -72,8 +73,13 @@ namespace CloudTask_GUI
             treeList.Columns.AddRange(new TreeListColumn[] { noteNameColumn, originalNoteColumn });
             treeList.DataSource = treeListCaseAdapter;
             treeList.StateImageList = sharedTreeListImageCollection;
-            this.treeList.GetStateImage += new DevExpress.XtraTreeList.GetStateImageEventHandler(treeListCaseAdapter.TreeListGetStateImage);
+            treeList.GetStateImage += new DevExpress.XtraTreeList.GetStateImageEventHandler(treeListCaseAdapter.TreeListGetStateImage);
 
+
+
+            mainGridView.OptionsBehavior.AutoPopulateColumns = false;
+            TableGridCaseAdapter tableGridCaseAdapter = new TableGridCaseAdapter(currentCase ,mainGridControl);
+            treeList.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(tableGridCaseAdapter.TreeListFocusedNodeChanged);
             
             //this.treeList.FocusedNodeChanged +=
 //Transfer note to the table grid.

@@ -129,7 +129,7 @@ namespace CloudTask_Model
         INode Parent { get; set; }
 
         [DataMember]
-        string Name { get; set; }
+        string NodeName { get; set; }
 
         [DataMember]
         int StateImageIndex { get; set; }

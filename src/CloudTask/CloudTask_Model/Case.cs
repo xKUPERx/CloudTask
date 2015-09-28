@@ -20,7 +20,7 @@ namespace CloudTask_Model
        public INode Parent { get; set; }
 
        [DataMember]
-       public string Name { get; set; }
+       public string NodeName { get; set; }
 
        [DataMember]
        public INodeCollection Nodes { get; private set; }
@@ -35,7 +35,7 @@ namespace CloudTask_Model
        {
            ID = Guid.NewGuid().ToString();
            Parent = null;
-           Name = caseName;         
+           NodeName = caseName;         
            Nodes = new INodeCollection();
            StateImageIndex = Constants.TREE_LIST_CASE_INDEX;
        }

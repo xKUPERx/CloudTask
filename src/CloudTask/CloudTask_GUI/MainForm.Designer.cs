@@ -34,12 +34,17 @@ namespace CloudTask_GUI
             this.xtraUserControl1 = new DevExpress.XtraEditors.XtraUserControl();
             this.treeList = new DevExpress.XtraTreeList.TreeList();
             this.sharedTreeListImageCollection = new DevExpress.Utils.SharedImageCollection(this.components);
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.mainGridControl = new DevExpress.XtraGrid.GridControl();
+            this.mainGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.NodeName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.TaskText = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.StartDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.FinishDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.IsDone = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.treeList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sharedTreeListImageCollection)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraUserControl1
@@ -69,20 +74,66 @@ namespace CloudTask_GUI
             this.sharedTreeListImageCollection.ImageSource.Images.SetKeyName(2, "TreeListNoteIcon.ico");
             this.sharedTreeListImageCollection.ParentControl = this;
             // 
-            // gridControl1
+            // mainGridControl
             // 
-            this.gridControl1.Location = new System.Drawing.Point(439, 158);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(643, 378);
-            this.gridControl1.TabIndex = 2;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.mainGridControl.Location = new System.Drawing.Point(397, 158);
+            this.mainGridControl.MainView = this.mainGridView;
+            this.mainGridControl.Name = "mainGridControl";
+            this.mainGridControl.Size = new System.Drawing.Size(779, 432);
+            this.mainGridControl.TabIndex = 2;
+            this.mainGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.mainGridView});
             // 
-            // gridView1
+            // mainGridView
             // 
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
+            this.mainGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.NodeName,
+            this.TaskText,
+            this.StartDate,
+            this.FinishDate,
+            this.IsDone});
+            this.mainGridView.GridControl = this.mainGridControl;
+            this.mainGridView.Name = "mainGridView";
+            // 
+            // NodeName
+            // 
+            this.NodeName.Caption = "Task name";
+            this.NodeName.FieldName = "NodeName";
+            this.NodeName.Name = "NodeName";
+            this.NodeName.Visible = true;
+            this.NodeName.VisibleIndex = 0;
+            // 
+            // TaskText
+            // 
+            this.TaskText.Caption = "Task text";
+            this.TaskText.FieldName = "TaskText";
+            this.TaskText.Name = "TaskText";
+            this.TaskText.Visible = true;
+            this.TaskText.VisibleIndex = 1;
+            // 
+            // StartDate
+            // 
+            this.StartDate.Caption = "Start date";
+            this.StartDate.FieldName = "StartDate";
+            this.StartDate.Name = "StartDate";
+            this.StartDate.Visible = true;
+            this.StartDate.VisibleIndex = 2;
+            // 
+            // FinishDate
+            // 
+            this.FinishDate.Caption = "Finish date";
+            this.FinishDate.FieldName = "FinishDate";
+            this.FinishDate.Name = "FinishDate";
+            this.FinishDate.Visible = true;
+            this.FinishDate.VisibleIndex = 3;
+            // 
+            // IsDone
+            // 
+            this.IsDone.Caption = "Is done?";
+            this.IsDone.FieldName = "IsDone";
+            this.IsDone.Name = "IsDone";
+            this.IsDone.Visible = true;
+            this.IsDone.VisibleIndex = 4;
             // 
             // MainForm
             // 
@@ -91,15 +142,15 @@ namespace CloudTask_GUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 700);
-            this.Controls.Add(this.gridControl1);
+            this.Controls.Add(this.mainGridControl);
             this.Controls.Add(this.treeList);
             this.Controls.Add(this.xtraUserControl1);
             this.Name = "MainForm";
             this.Text = "CloudTask";
             ((System.ComponentModel.ISupportInitialize)(this.treeList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sharedTreeListImageCollection)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -109,8 +160,13 @@ namespace CloudTask_GUI
         private DevExpress.XtraEditors.XtraUserControl xtraUserControl1;
         private DevExpress.XtraTreeList.TreeList treeList;
         private DevExpress.Utils.SharedImageCollection sharedTreeListImageCollection;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.GridControl mainGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView mainGridView;
+        private DevExpress.XtraGrid.Columns.GridColumn NodeName;
+        private DevExpress.XtraGrid.Columns.GridColumn TaskText;
+        private DevExpress.XtraGrid.Columns.GridColumn StartDate;
+        private DevExpress.XtraGrid.Columns.GridColumn FinishDate;
+        private DevExpress.XtraGrid.Columns.GridColumn IsDone;
 
 
 

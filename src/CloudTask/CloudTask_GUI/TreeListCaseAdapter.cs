@@ -49,7 +49,7 @@ namespace CloudTask_GUI
         {
             if (info.Column.FieldName == CloudTask_Model.Resources.Headers.ResourceManager.GetString("TreeListColumnName"))
             {
-                info.CellData = ((INode)info.Node).Name;
+                info.CellData = ((INode)info.Node).NodeName;
             }
             else if (info.Column.FieldName == CloudTask_Model.Resources.Headers.ResourceManager.GetString("TreeListColumnOriginalNote"))
             {
@@ -59,7 +59,7 @@ namespace CloudTask_GUI
 
         void TreeList.IVirtualTreeListData.VirtualTreeSetCellValue(VirtualTreeSetCellValueInfo info)
         {
-                ((INode)info.Node).Name = (string)info.NewCellData;
+                ((INode)info.Node).NodeName = (string)info.NewCellData;
         }
 
         public void TreeListGetStateImage(object sender, GetStateImageEventArgs e)

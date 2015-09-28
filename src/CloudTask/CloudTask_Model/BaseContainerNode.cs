@@ -23,7 +23,7 @@ namespace CloudTask_Model
         virtual public INode Parent { get; set; }
 
         [DataMember]
-        virtual public string Name { get; set; }
+        virtual public string NodeName { get; set; }
 
         [DataMember]
         virtual public int StateImageIndex { get; set; }
@@ -37,7 +37,7 @@ namespace CloudTask_Model
         public BaseContainerNode(INode parent = null, string ContainerName = "Default Container")
         {
             ID = Guid.NewGuid().ToString();
-            Name = ContainerName;
+            NodeName = ContainerName;
             Parent = parent;
             Nodes = new INodeCollection();
             StateImageIndex = Constants.TREE_LIST_BASE_CONTAINER_INDEX;

@@ -20,7 +20,7 @@ namespace CloudTask_Model
         virtual public INode Parent { get; set; }
 
         [DataMember]
-        virtual public string Name { get; set; }      
+        virtual public string NodeName { get; set; }      
 
         [DataMember]
         virtual public INodeCollection Nodes { get { return null; } }
@@ -48,7 +48,7 @@ namespace CloudTask_Model
         {
             ID = Guid.NewGuid().ToString();
             Parent = parent;
-            Name = taskName;
+            NodeName = taskName;
             TaskText = taskText;
             IsDone = isDone;
             StartDate = startDate;
