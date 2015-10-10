@@ -16,6 +16,8 @@ namespace CloudTask_Model
         [DataMember]
         override public int StateImageIndex { get; set; }
 
+        [DataMember]
+        virtual public INode SelfLink { get; private set; }
         #endregion Members
 
         #region Constructors
@@ -23,7 +25,8 @@ namespace CloudTask_Model
         public Category(INode parent = null, string CategoryName = "Default Category")
             : base(parent, CategoryName)
         {
-            StateImageIndex = Constants.TREE_LIST_CATEGORY_INDEX;
+            StateImageIndex = ImageConstants.TREE_LIST_CATEGORY_INDEX;
+            SelfLink = this;
         }
 
         #endregion Constructors      

@@ -30,6 +30,9 @@ namespace CloudTask_Model
 
         [DataMember]
         virtual public INodeCollection Nodes { get; private set; }
+
+        [DataMember]
+        virtual public INode SelfLink { get; private set; }
         #endregion Members
 
         #region Constructors
@@ -40,7 +43,8 @@ namespace CloudTask_Model
             NodeName = ContainerName;
             Parent = parent;
             Nodes = new INodeCollection();
-            StateImageIndex = Constants.TREE_LIST_BASE_CONTAINER_INDEX;
+            StateImageIndex = ImageConstants.TREE_LIST_BASE_CONTAINER_INDEX;
+            SelfLink = this;
         }
 
         #endregion Constructors

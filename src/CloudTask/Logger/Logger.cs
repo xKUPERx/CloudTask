@@ -32,6 +32,10 @@ namespace Log
             log.Info(message);
         }
 
+        public static void WriteErrorMessage(string message)
+        {
+            log.Error(message);
+        }
         #endregion Methods
     }
 }

@@ -61,20 +61,11 @@ namespace CloudTask_Model.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name.
+        ///   Looks up a localized string similar to Task name.
         /// </summary>
-        public static string TreeListColumnName {
+        public static string GridNoteNameColumnCaption {
             get {
-                return ResourceManager.GetString("TreeListColumnName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Original Note.
-        /// </summary>
-        public static string TreeListColumnOriginalNote {
-            get {
-                return ResourceManager.GetString("TreeListColumnOriginalNote", resourceCulture);
+                return ResourceManager.GetString("GridNoteNameColumnCaption", resourceCulture);
             }
         }
     }

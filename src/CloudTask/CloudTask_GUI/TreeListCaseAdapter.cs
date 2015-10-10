@@ -14,7 +14,7 @@ namespace CloudTask_GUI
     {
         #region Members
 
-        public INodeCollection m_currentCases {get; set;}
+        public Case m_currentCase {get; set;}
 
         #endregion Members
 
@@ -22,8 +22,7 @@ namespace CloudTask_GUI
 
         public TreeListCaseAdapter(Case newCase)
         {
-            m_currentCases = new INodeCollection();
-            m_currentCases.Add(newCase);
+            m_currentCase = newCase;
         }
 
         #endregion Constructors
@@ -35,7 +34,7 @@ namespace CloudTask_GUI
         {
             if (info.Node is TreeListCaseAdapter)
             {
-                info.Children = ((TreeListCaseAdapter)info.Node).m_currentCases;
+                info.Children = ((TreeListCaseAdapter)info.Node).m_currentCase.Nodes;
             }
             else
             {
@@ -47,11 +46,11 @@ namespace CloudTask_GUI
         void TreeList.IVirtualTreeListData.VirtualTreeGetCellValue(
         VirtualTreeGetCellValueInfo info)
         {
-            if (info.Column.FieldName == CloudTask_Model.Resources.Headers.ResourceManager.GetString("TreeListColumnName"))
+            if (info.Column.FieldName == GUIConstants.TREE_LIST_NAME_COLUMN)
             {
                 info.CellData = ((INode)info.Node).NodeName;
             }
-            else if (info.Column.FieldName == CloudTask_Model.Resources.Headers.ResourceManager.GetString("TreeListColumnOriginalNote"))
+            else if (info.Column.FieldName == GUIConstants.TREE_LIST_ORIGINAL_NOTE_COLUMN)
             {
                 info.CellData = (INode)info.Node;
             }
@@ -64,7 +63,7 @@ namespace CloudTask_GUI
 
         public void TreeListGetStateImage(object sender, GetStateImageEventArgs e)
         {
-            INode nodeData = e.Node.GetValue(CloudTask_Model.Resources.Headers.ResourceManager.GetString("TreeListColumnOriginalNote")) as INode;
+            INode nodeData = e.Node.GetValue(GUIConstants.TREE_LIST_ORIGINAL_NOTE_COLUMN) as INode;
             if (nodeData != null)
             {
                 e.NodeImageIndex = nodeData.StateImageIndex;

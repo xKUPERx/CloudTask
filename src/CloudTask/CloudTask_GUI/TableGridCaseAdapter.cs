@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CloudTask_Model;
+using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Columns;
 
 
 namespace CloudTask_GUI
@@ -12,7 +15,7 @@ namespace CloudTask_GUI
     {
         #region Members
 
-        public Case m_currentCase{ get; set; }
+        public Case m_currentCase { get; set; }
         public INode m_currentNote { get; set; }
         public DevExpress.XtraGrid.GridControl m_currentGridControl { get; set; }
 
@@ -38,7 +41,7 @@ namespace CloudTask_GUI
 
         public void TreeListFocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
         {
-            m_currentNote = e.Node.GetValue(CloudTask_Model.Resources.Headers.ResourceManager.GetString("TreeListColumnOriginalNote")) as INode;
+            m_currentNote = e.Node.GetValue(GUIConstants.TREE_LIST_ORIGINAL_NOTE_COLUMN) as INode;
             if (m_currentNote != null)
             {
                 INodeCollection nodesList = null;
@@ -50,7 +53,7 @@ namespace CloudTask_GUI
                 {
                     nodesList = m_currentNote.Parent.Nodes;
                 }
-                else 
+                else
                 {
                     return;
                 }
@@ -72,6 +75,19 @@ namespace CloudTask_GUI
                 m_lastNode = m_currentNote;
             }
         }
+
+
+        //public void gridView_CustomUnboundColumnData(object sender, CustomColumnDataEventArgs e) //image in grind
+        //{
+        //    GridView view = sender as GridView;
+        //    //if (e.Column.FieldName == "NodesIcon" && e.IsGetData) e.Value = getTotalValue(view, e.ListSourceRowIndex);
+        //    if (e.Column.FieldName == "NodesIcon" && e.IsGetData)
+        //    {
+        //        DevExpress.Utils.SharedImageCollection images = view.Images as DevExpress.Utils.SharedImageCollection;
+        //        e.Value = images.Container.Components.GetEnumerator().Current;
+        //    }
+        //}
+
         #endregion Methods
     }
 }

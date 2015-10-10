@@ -40,6 +40,9 @@ namespace CloudTask_Model
         [DataMember]
         virtual public int StateImageIndex { get; set; }
 
+        [DataMember]
+        virtual public INode SelfLink { get; private set; }
+
         #endregion Members
 
         #region Constructors
@@ -53,7 +56,8 @@ namespace CloudTask_Model
             IsDone = isDone;
             StartDate = startDate;
             FinishDate = finishDate;
-            StateImageIndex = Constants.TREE_LIST_NOTE_INDEX;
+            StateImageIndex = ImageConstants.TREE_LIST_NOTE_INDEX;
+            SelfLink = this;
         }
 
         #endregion Constructors

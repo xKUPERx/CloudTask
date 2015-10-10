@@ -8,8 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Resources;
 using CloudTask_Model;
-using DevExpress.XtraTreeList;
-using DevExpress.XtraTreeList.Columns;
+
 //using DevExpress.XtraGrid.Columns;
 
 namespace CloudTask_GUI
@@ -22,7 +21,6 @@ namespace CloudTask_GUI
             InitializeComponent();
             appPath = Application.StartupPath;
 
-            //string resxFile = @"F:\CloudTask\trunk\src\CloudTask\CloudTask_Model\Resources\HeaderResources_EN.resx";
             #region TestCase
             Case currentCase = new Case();
             Category first_lvl_category_1 = new Category(null,"First level category");
@@ -62,15 +60,6 @@ namespace CloudTask_GUI
             #endregion TestCase
 
             TreeListCaseAdapter treeListCaseAdapter = new TreeListCaseAdapter(currentCase);
-            TreeListColumn noteNameColumn = new TreeListColumn();
-            noteNameColumn.Caption = CloudTask_Model.Resources.Headers.ResourceManager.GetString("TreeListColumnName");           
-            noteNameColumn.VisibleIndex = 0;          
-
-            TreeListColumn originalNoteColumn = new TreeListColumn();
-            originalNoteColumn.Caption = CloudTask_Model.Resources.Headers.ResourceManager.GetString("TreeListColumnOriginalNote"); 
-            originalNoteColumn.Visible = false;
-
-            treeList.Columns.AddRange(new TreeListColumn[] { noteNameColumn, originalNoteColumn });
             treeList.DataSource = treeListCaseAdapter;
             treeList.StateImageList = sharedTreeListImageCollection;
             treeList.GetStateImage += new DevExpress.XtraTreeList.GetStateImageEventHandler(treeListCaseAdapter.TreeListGetStateImage);
@@ -78,24 +67,17 @@ namespace CloudTask_GUI
 
 
             mainGridView.OptionsBehavior.AutoPopulateColumns = false;
+            //mainGridView.Images = sharedTreeListImageCollection;
+            //mainGridView.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(tableGridCaseAdapter.gridView_CustomUnboundColumnData); image in grid
             TableGridCaseAdapter tableGridCaseAdapter = new TableGridCaseAdapter(currentCase ,mainGridControl);
+           
             treeList.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(tableGridCaseAdapter.TreeListFocusedNodeChanged);
+
+            xtraTabControlCaseAdapter propertiesControlCaseAdapter = new CloudTask_GUI.xtraTabControlCaseAdapter(xtraTabControlNodesProperties);
+            propertiesControlCaseAdapter.SetupControls();
+            mainGridView.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(propertiesControlCaseAdapter.gridView_FocusedRowChanged);
+            treeList.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(propertiesControlCaseAdapter.TreeListFocusedNodeChanged);
             
-            //this.treeList.FocusedNodeChanged +=
-//Transfer note to the table grid.
-    //            private void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e) {
-    ////... 
-    //this.BeginInvoke(new MethodInvoker(delegate {
-    //    treeList1.FocusedNode = myTargetNode;
-    //}));
-            
-            //treeList1.StateImageList = IMAGES
-            //using (ResXResourceSet resxSet = new ResXResourceSet(resxFile))
-            //{
-            //    // Retrieve the string resource for the title.
-            //    this.Text = resxSet.GetString("ApplicationTitle");
-            //}
-            //this.Text = CommanderControlLib.CommonProjectDefinitions.GetApplicationTitle;
         }
     }
 }

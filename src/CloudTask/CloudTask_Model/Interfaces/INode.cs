@@ -140,5 +140,8 @@ namespace CloudTask_Model
         [DataMember]
         bool IsContainer { get; }
 
+        [DataMember]
+        INode SelfLink { get;}
+
     }
 }
