@@ -8,16 +8,12 @@ using System.Runtime.Serialization.Json;
 
 namespace CloudTask_Model
 {
-     [DataContract]
     public class Category : BaseContainerNode
     {
         #region Members
 
-        [DataMember]
         override public int StateImageIndex { get; set; }
 
-        [DataMember]
-        virtual public INode SelfLink { get; private set; }
         #endregion Members
 
         #region Constructors
@@ -26,7 +22,6 @@ namespace CloudTask_Model
             : base(parent, CategoryName)
         {
             StateImageIndex = ImageConstants.TREE_LIST_CATEGORY_INDEX;
-            SelfLink = this;
         }
 
         #endregion Constructors      

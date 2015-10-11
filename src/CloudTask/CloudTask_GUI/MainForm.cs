@@ -59,6 +59,12 @@ namespace CloudTask_GUI
             currentCase.Nodes.Add(first_lvl_category_2);            
             #endregion TestCase
 
+
+            JsonParser jsonparser = new JsonParser();
+            jsonparser.SaveCaseToFile(currentCase);
+            currentCase = null;
+            jsonparser.LoadCaseFromFile(out currentCase);
+
             TreeListCaseAdapter treeListCaseAdapter = new TreeListCaseAdapter(currentCase);
             treeList.DataSource = treeListCaseAdapter;
             treeList.StateImageList = sharedTreeListImageCollection;

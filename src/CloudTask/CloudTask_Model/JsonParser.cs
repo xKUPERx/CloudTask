@@ -8,6 +8,7 @@ using System.Runtime.Serialization.Json;
 using System.IO;
 using Log;
 
+using Newtonsoft.Json;
 
 namespace CloudTask_Model
 {
@@ -31,16 +32,18 @@ namespace CloudTask_Model
 
         #region Methods
 
-        public void SaveCaseToFile(ref Case currentCase)
+        public void SaveCaseToFile(Case currentCase)
         {
             try
             {
-                using (FileStream outPutFileStream = File.Create(m_fileToParse))
+                using (StreamWriter outPutFileStream = new StreamWriter(m_fileToParse))                
                 {
-                    DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Case));
-                    jsonSerializer.WriteObject(outPutFileStream, currentCase);
-                    outPutFileStream.Flush();
-                    outPutFileStream.Close();
+                    string jsonTypeNameAuto = JsonConvert.SerializeObject(currentCase, Formatting.Indented, new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.Auto,
+                        PreserveReferencesHandling = PreserveReferencesHandling.Objects
+                    });
+                    outPutFileStream.WriteLine(jsonTypeNameAuto);
                 }
             }
             catch(Exception ex)
@@ -53,19 +56,37 @@ namespace CloudTask_Model
         {
             try
             {
-                using (FileStream inPutFileStream = File.OpenRead(m_fileToParse))
+                using (StreamReader inPutFileStream = new StreamReader(m_fileToParse))
                 {                   
-                    DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Case));
-                    currentCase = (Case)jsonSerializer.ReadObject(inPutFileStream);
-                    inPutFileStream.Close();
+                   string result = inPutFileStream.ReadToEnd();
+                   currentCase = (Case)JsonConvert.DeserializeObject(result, typeof(Case), new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.Auto,
+                        PreserveReferencesHandling = PreserveReferencesHandling.Objects
+                    });
+                }
+                if (currentCase != null && currentCase.Nodes != null)
+                {
+                    RestoreParentLink(currentCase);
                 }
             }
             catch (Exception ex)
             {
                 currentCase = null;
                 Logger.WriteInfoMessage(String.Format("\nLoad case from file error:\n\tFile name - {0};\n\tException - {1}", m_fileToParse, ex.ToString()));
-                //write to log
             }
+        }
+
+        private void RestoreParentLink(INode parent)
+        {
+            foreach (INode child in parent.Nodes)
+            {
+                child.Parent = parent;
+                if (child.Nodes != null)
+                {
+                    RestoreParentLink(child);
+                }
+            }         
         }
 
         #endregion Methods

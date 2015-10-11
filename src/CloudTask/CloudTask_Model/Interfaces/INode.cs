@@ -10,7 +10,7 @@ using System.Collections;
 namespace CloudTask_Model
 {
     #region INodeCollection
-
+    [CollectionDataContract]
     public class INodeCollection : CollectionBase
     {
         public INodeCollection() { }
@@ -119,29 +119,19 @@ namespace CloudTask_Model
 
     #endregion INodeCollection
 
-
     public interface INode
     {
-        [DataMember]
         string ID { get;}
 
-        [DataMember]
         INode Parent { get; set; }
 
-        [DataMember]
         string NodeName { get; set; }
 
-        [DataMember]
         int StateImageIndex { get; set; }
 
-        [DataMember]
         INodeCollection Nodes { get; }
 
-        [DataMember]
         bool IsContainer { get; }
-
-        [DataMember]
-        INode SelfLink { get;}
 
     }
 }
