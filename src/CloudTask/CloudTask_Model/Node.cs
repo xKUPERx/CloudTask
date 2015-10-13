@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
-
+using Newtonsoft.Json;
 
 namespace CloudTask_Model
 {
@@ -32,7 +32,7 @@ namespace CloudTask_Model
         #endregion Members
 
         #region Constructors
-
+        [JsonConstructor]
         public Node(INode parent, string taskName, string taskText, bool isDone, System.DateTime startDate, System.DateTime finishDate)
         {
             ID = Guid.NewGuid().ToString();
@@ -44,6 +44,10 @@ namespace CloudTask_Model
             FinishDate = finishDate;
             StateImageIndex = ImageConstants.TREE_LIST_NOTE_INDEX;
         }
+
+        public Node(INode parent)
+            :this(parent,"New task", "", false, new DateTime(), new DateTime() )
+        {}
 
         #endregion Constructors
 

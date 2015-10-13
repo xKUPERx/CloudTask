@@ -29,8 +29,7 @@ namespace CloudTask_GUI
 
         #region Methods
 
-        void TreeList.IVirtualTreeListData.VirtualTreeGetChildNodes(
-        VirtualTreeGetChildNodesInfo info)
+        void TreeList.IVirtualTreeListData.VirtualTreeGetChildNodes(VirtualTreeGetChildNodesInfo info)
         {
             if (info.Node is TreeListCaseAdapter)
             {

@@ -12,6 +12,8 @@ namespace CloudTask_Model
    public class Case : INode
    {
        #region Members
+       public delegate void CaseUpdateEventHandler(object sender);
+       public event CaseUpdateEventHandler CaseUpdate;
 
        public string ID { get; private set; }
 
@@ -47,5 +49,11 @@ namespace CloudTask_Model
            }
        }
        #endregion Methods
+
+
+       public void OnCaseUpdate()
+       {
+           CaseUpdate(this);
+       }
    }
 }

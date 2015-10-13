@@ -28,6 +28,7 @@ namespace CloudTask_GUI
         {
             m_currentCase = newCase;
             m_currentGridControl = newGridControl;
+            m_currentCase.CaseUpdate += new Case.CaseUpdateEventHandler(this.OnCaseUpdate);
         }
 
         public TableGridCaseAdapter()
@@ -57,26 +58,52 @@ namespace CloudTask_GUI
                 {
                     return;
                 }
-
-                List<Node> nodes = new List<Node>();
-                foreach (INode node in nodesList)
-                {
-                    Node temp = node as Node;
-                    if (temp != null)
-                    {
-                        nodes.Add(temp);
-                    }
-                }
-
-                m_currentGridControl.BeginUpdate();
-                m_currentGridControl.DataSource = nodes;
-                m_currentGridControl.EndUpdate();
-
-                m_lastNode = m_currentNote;
+                SetGridData(nodesList);
             }
         }
 
+        private void OnCaseUpdate(object sender)
+        {
+            Case newCase = sender as Case;
+            if (newCase == null)
+            {
+                return;
+            }
 
+            INodeCollection nodesList = null;
+            if (m_currentCase == newCase)
+            {
+                if (m_currentNote != null && m_currentNote is BaseContainerNode)
+                {
+                    nodesList = m_currentNote.Nodes;                                     
+                }
+            }
+            else 
+            {
+                m_currentCase = newCase;
+                nodesList = m_currentCase.Nodes;
+            }
+            SetGridData(nodesList);
+        }
+
+        private void SetGridData(INodeCollection nodesList)    
+        {
+            List<Node> nodes = new List<Node>();
+            foreach (INode node in nodesList)
+            {
+                Node temp = node as Node;
+                if (temp != null)
+                {
+                    nodes.Add(temp);
+                }
+            }
+
+            m_currentGridControl.BeginUpdate();
+            m_currentGridControl.DataSource = nodes;
+            m_currentGridControl.EndUpdate();
+
+            m_lastNode = m_currentNote;
+        }
         //public void gridView_CustomUnboundColumnData(object sender, CustomColumnDataEventArgs e) //image in grind
         //{
         //    GridView view = sender as GridView;

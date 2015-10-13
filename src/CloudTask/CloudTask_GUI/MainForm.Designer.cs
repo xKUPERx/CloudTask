@@ -57,6 +57,14 @@ namespace CloudTask_GUI
             this.labelFinishDate = new DevExpress.XtraEditors.LabelControl();
             this.labelStartDate = new DevExpress.XtraEditors.LabelControl();
             this.labelTaskName = new DevExpress.XtraEditors.LabelControl();
+            this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             ((System.ComponentModel.ISupportInitialize)(this.treeList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sharedTreeListImageCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sharedTreeListImageCollection.ImageSource)).BeginInit();
@@ -73,13 +81,14 @@ namespace CloudTask_GUI
             ((System.ComponentModel.ISupportInitialize)(this.dateEditStartDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditStartDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditTaskName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraUserControl1
             // 
             this.xtraUserControl1.Appearance.BackColor = System.Drawing.Color.White;
             this.xtraUserControl1.Appearance.Options.UseBackColor = true;
-            this.xtraUserControl1.Location = new System.Drawing.Point(2, 88);
+            this.xtraUserControl1.Location = new System.Drawing.Point(0, 148);
             this.xtraUserControl1.Name = "xtraUserControl1";
             this.xtraUserControl1.Size = new System.Drawing.Size(1197, 571);
             this.xtraUserControl1.TabIndex = 0;
@@ -89,7 +98,7 @@ namespace CloudTask_GUI
             this.treeList.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.noteNameColumn,
             this.originalNoteColumn});
-            this.treeList.Location = new System.Drawing.Point(2, 88);
+            this.treeList.Location = new System.Drawing.Point(0, 148);
             this.treeList.Name = "treeList";
             this.treeList.Size = new System.Drawing.Size(342, 566);
             this.treeList.TabIndex = 1;
@@ -121,7 +130,7 @@ namespace CloudTask_GUI
             // 
             // mainGridControl
             // 
-            this.mainGridControl.Location = new System.Drawing.Point(350, 88);
+            this.mainGridControl.Location = new System.Drawing.Point(347, 148);
             this.mainGridControl.MainView = this.mainGridView;
             this.mainGridControl.Name = "mainGridControl";
             this.mainGridControl.Size = new System.Drawing.Size(844, 402);
@@ -182,7 +191,7 @@ namespace CloudTask_GUI
             // 
             // xtraTabControlNodesProperties
             // 
-            this.xtraTabControlNodesProperties.Location = new System.Drawing.Point(350, 496);
+            this.xtraTabControlNodesProperties.Location = new System.Drawing.Point(347, 556);
             this.xtraTabControlNodesProperties.Name = "xtraTabControlNodesProperties";
             this.xtraTabControlNodesProperties.SelectedTabPage = this.xtraTabPageTaskText;
             this.xtraTabControlNodesProperties.Size = new System.Drawing.Size(849, 163);
@@ -194,13 +203,14 @@ namespace CloudTask_GUI
             // xtraTabPageTaskText
             // 
             this.xtraTabPageTaskText.Controls.Add(this.memoEditTaskText);
+            this.xtraTabPageTaskText.Controls.Add(this.xtraUserControl1);
             this.xtraTabPageTaskText.Name = "xtraTabPageTaskText";
             this.xtraTabPageTaskText.Size = new System.Drawing.Size(843, 135);
             this.xtraTabPageTaskText.Text = "PageTaskText";
             // 
             // memoEditTaskText
             // 
-            this.memoEditTaskText.Location = new System.Drawing.Point(-1, 0);
+            this.memoEditTaskText.Location = new System.Drawing.Point(0, 0);
             this.memoEditTaskText.Name = "memoEditTaskText";
             this.memoEditTaskText.Size = new System.Drawing.Size(851, 132);
             this.memoEditTaskText.TabIndex = 0;
@@ -216,7 +226,7 @@ namespace CloudTask_GUI
             this.xtraTabPageNodesProperties.Controls.Add(this.labelStartDate);
             this.xtraTabPageNodesProperties.Controls.Add(this.labelTaskName);
             this.xtraTabPageNodesProperties.Name = "xtraTabPageNodesProperties";
-            this.xtraTabPageNodesProperties.Size = new System.Drawing.Size(850, 135);
+            this.xtraTabPageNodesProperties.Size = new System.Drawing.Size(843, 135);
             this.xtraTabPageNodesProperties.Text = "NodesProperties";
             // 
             // checkEditIsDone
@@ -290,18 +300,83 @@ namespace CloudTask_GUI
             this.labelTaskName.TabIndex = 0;
             this.labelTaskName.Text = "Task name: ";
             // 
+            // ribbonControl1
+            // 
+            this.ribbonControl1.ExpandCollapseItem.Id = 0;
+            this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.ribbonControl1.ExpandCollapseItem,
+            this.barButtonItem1});
+            this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
+            this.ribbonControl1.MaxItemId = 2;
+            this.ribbonControl1.Name = "ribbonControl1";
+            this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
+            this.ribbonPage1});
+            this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
+            this.ribbonControl1.Size = new System.Drawing.Size(1200, 144);
+            this.ribbonControl1.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "delete";
+            this.barButtonItem1.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.Glyph")));
+            this.barButtonItem1.Id = 1;
+            this.barButtonItem1.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.LargeGlyph")));
+            this.barButtonItem1.Name = "barButtonItem1";
+            // 
+            // ribbonPage1
+            // 
+            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup1});
+            this.ribbonPage1.Name = "ribbonPage1";
+            this.ribbonPage1.Text = "ribbonPage1";
+            // 
+            // ribbonPageGroup1
+            // 
+            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+            this.ribbonPageGroup1.Text = "ribbonPageGroup1";
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(0, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(0, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 0);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 0);
+            // 
             // MainForm
             // 
+            this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.True;
             this.Appearance.BackColor = System.Drawing.Color.White;
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 657);
+            this.ClientSize = new System.Drawing.Size(1200, 722);
             this.Controls.Add(this.xtraTabControlNodesProperties);
             this.Controls.Add(this.mainGridControl);
             this.Controls.Add(this.treeList);
-            this.Controls.Add(this.xtraUserControl1);
+            this.Controls.Add(this.ribbonControl1);
             this.Name = "MainForm";
+            this.Ribbon = this.ribbonControl1;
             this.Text = "CloudTask";
             ((System.ComponentModel.ISupportInitialize)(this.treeList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sharedTreeListImageCollection.ImageSource)).EndInit();
@@ -320,7 +395,9 @@ namespace CloudTask_GUI
             ((System.ComponentModel.ISupportInitialize)(this.dateEditStartDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditStartDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditTaskName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -350,6 +427,16 @@ namespace CloudTask_GUI
         private DevExpress.XtraEditors.LabelControl labelTaskName;
         private TreeListColumn noteNameColumn;
         private TreeListColumn originalNoteColumn;
+        private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+
+        private TableGridPopupMenu tableGridPopupMenu;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
 
 
 
