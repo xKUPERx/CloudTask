@@ -73,10 +73,7 @@ namespace CloudTask_GUI
             INodeCollection nodesList = null;
             if (m_currentCase == newCase)
             {
-                if (m_currentNote != null && m_currentNote is BaseContainerNode)
-                {
-                    nodesList = m_currentNote.Nodes;                                     
-                }
+                nodesList = (m_currentNote != null && m_currentNote is BaseContainerNode) ? m_currentNote.Nodes : m_currentNote.Parent.Nodes;
             }
             else 
             {

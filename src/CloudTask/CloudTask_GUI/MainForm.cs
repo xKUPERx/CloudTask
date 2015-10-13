@@ -30,12 +30,8 @@ namespace CloudTask_GUI
             TestJsonParser();
             #endregion tests
 
-            TreeListCaseAdapter treeListCaseAdapter = new TreeListCaseAdapter(m_currentCase);
-            treeList.DataSource = treeListCaseAdapter;
+            TreeListCaseAdapter treeListCaseAdapter = new TreeListCaseAdapter(m_currentCase, treeList);
             treeList.StateImageList = sharedTreeListImageCollection;
-            treeList.GetStateImage += new DevExpress.XtraTreeList.GetStateImageEventHandler(treeListCaseAdapter.TreeListGetStateImage);
-
-
 
             mainGridView.OptionsBehavior.AutoPopulateColumns = false;
             //mainGridView.Images = sharedTreeListImageCollection;

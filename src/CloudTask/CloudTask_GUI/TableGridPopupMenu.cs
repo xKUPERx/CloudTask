@@ -25,13 +25,11 @@ namespace CloudTask_GUI
         private DevExpress.XtraGrid.Views.Grid.GridView m_gridView { get; set; }
         private TableGridCaseAdapter m_tableGridCaseAdapter { get; set; }
 
-       // private DevExpress.XtraBars.BarButtonItem m_barButtonAddNewTask { get; set; }
-       // private DevExpress.XtraBars.BarButtonItem m_barButtonDeleteTask { get; set; }
         private Dictionary<string, DevExpress.XtraBars.BarButtonItem> m_barButtonsMap;
         #endregion Members
 
         #region Constructors
-        public TableGridPopupMenu(System.Windows.Forms.Control form, TableGridCaseAdapter tableGridCaseAdapter)//, DevExpress.XtraGrid.Views.Grid.GridView gridView)
+        public TableGridPopupMenu(System.Windows.Forms.Control form, TableGridCaseAdapter tableGridCaseAdapter)
         {
             try
             {                
@@ -95,24 +93,48 @@ namespace CloudTask_GUI
         {
             GridView view = m_tableGridCaseAdapter.m_currentGridControl.FocusedView as GridView;
             List<Node> nodes = (List<Node>)view.GridControl.DataSource;
-            if (e.Item.Caption == BAR_BUTTON_ADD_NEW_TASK_CAPTION)
+            try
             {
-                m_tableGridCaseAdapter.m_currentNote.Nodes.Add(new Node(m_tableGridCaseAdapter.m_currentNote));
+                if (e.Item.Caption == BAR_BUTTON_ADD_NEW_TASK_CAPTION)
+                {
+                    if (m_tableGridCaseAdapter.m_currentNote == null && m_tableGridCaseAdapter.m_currentCase != null)
+                    {
+                        m_tableGridCaseAdapter.m_currentCase.Nodes.Add(new Node(m_tableGridCaseAdapter.m_currentCase));
+                    }
+                    else if (m_tableGridCaseAdapter.m_currentNote is BaseContainerNode)
+                    {
+                        m_tableGridCaseAdapter.m_currentNote.Nodes.Add(new Node(m_tableGridCaseAdapter.m_currentNote));
+                    }
+                    else
+                    {
+                        m_tableGridCaseAdapter.m_currentNote.Parent.Nodes.Add(new Node(m_tableGridCaseAdapter.m_currentNote));
+                    }
+                }
+                else if (e.Item.Caption == BAR_BUTTON_DELETE_TASK_CAPTION)
+                {
+                    if (view.FocusedRowHandle < nodes.Count)
+                    {
+                        if (m_tableGridCaseAdapter.m_currentNote is BaseContainerNode)
+                        {
+                             m_tableGridCaseAdapter.m_currentNote.Nodes.Remove(nodes[view.FocusedRowHandle]);
+                        }
+                        else
+                        {                  
+                            m_tableGridCaseAdapter.m_currentNote.Parent.Nodes.Remove(nodes[view.FocusedRowHandle]);                          
+                        }
+                        
+                    }
+                    else
+                    {
+                        Log.Logger.WriteErrorMessage(string.Format("Wrong FocusedRowHandle during try to delete node from TableGrid, FocusedRowHandle: {0} , count of nodes in grid: {1}", view.FocusedRowHandle, nodes.Count));
+                    }
+
+                }
                 m_tableGridCaseAdapter.m_currentCase.OnCaseUpdate();
             }
-            else if (e.Item.Caption == BAR_BUTTON_DELETE_TASK_CAPTION)
+            catch (System.Exception ex)
             {
-                
-                if (view.FocusedRowHandle < nodes.Count)
-                {
-                    m_tableGridCaseAdapter.m_currentNote.Nodes.Remove(nodes[view.FocusedRowHandle]);
-                    m_tableGridCaseAdapter.m_currentCase.OnCaseUpdate();
-                }
-                else
-                {
-                    Log.Logger.WriteErrorMessage(string.Format("Wrong FocusedRowHandle during try to delete node from TableGrid, FocusedRowHandle: {0} , count of nodes in grid: {1}", view.FocusedRowHandle, nodes.Count));
-                }
-
+                Log.Logger.WriteErrorMessage(string.Format("Error during proccesing TableGridPopupMenu click, exception:\n\t{0}", ex.ToString()));
             }
         }
 

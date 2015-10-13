@@ -15,16 +15,26 @@ namespace CloudTask_GUI
         #region Members
 
         public Case m_currentCase {get; set;}
+        private DevExpress.XtraTreeList.TreeList m_treeList { get; set; }
 
         #endregion Members
 
         #region Constructors
 
-        public TreeListCaseAdapter(Case newCase)
+        public TreeListCaseAdapter(Case newCase, DevExpress.XtraTreeList.TreeList treeList)
         {
             m_currentCase = newCase;
+            m_treeList = treeList;
+            m_treeList.DataSource = this;
+            m_currentCase.CaseUpdate += new Case.CaseUpdateEventHandler(this.OnCaseUpdate);
+            m_treeList.GetStateImage += new DevExpress.XtraTreeList.GetStateImageEventHandler(this.TreeListGetStateImage);
         }
 
+        ~TreeListCaseAdapter()
+        {
+            m_treeList.GetStateImage -= new DevExpress.XtraTreeList.GetStateImageEventHandler(this.TreeListGetStateImage);
+            m_currentCase.CaseUpdate -= new Case.CaseUpdateEventHandler(this.OnCaseUpdate);
+        }
         #endregion Constructors
 
         #region Methods
@@ -70,6 +80,15 @@ namespace CloudTask_GUI
 
         }
 
+        private void OnCaseUpdate(object sender)
+        {
+            Case newCase = sender as Case;
+            if (newCase != null && newCase != m_currentCase)
+            {
+                m_currentCase = newCase;
+            }           
+            m_treeList.RefreshDataSource();
+        }
         #endregion Methods
     }
 }
