@@ -432,6 +432,7 @@ namespace CloudTask_GUI
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
 
         private TableGridPopupMenu tableGridPopupMenu;
+        private TreeListPopupMenu treeListPopupMenu;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;

@@ -49,6 +49,9 @@ namespace CloudTask_Model
             :this(parent,"New task", "", false, new DateTime(), new DateTime() )
         {}
 
+        public Node()
+            :this(null)
+        {}
         #endregion Constructors
 
         #region Methods

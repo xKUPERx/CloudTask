@@ -54,7 +54,7 @@
     <Compile Include="BaseContainerNode.cs" />
     <Compile Include="Case.cs" />
     <Compile Include="Category.cs" />
-    <Compile Include="Constants.cs" />
+    <Compile Include="ImageConstants.cs" />
     <Compile Include="Interfaces\INode.cs" />
     <Compile Include="JsonParser.cs" />
     <Compile Include="Node.cs" />

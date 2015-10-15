@@ -16,7 +16,7 @@ namespace CloudTask_GUI
         #region Members
 
         public Case m_currentCase { get; set; }
-        public INode m_currentNote { get; set; }
+        public INode m_currentNode { get; set; }
         public DevExpress.XtraGrid.GridControl m_currentGridControl { get; set; }
 
         private INode m_lastNode { get; set; }
@@ -42,23 +42,23 @@ namespace CloudTask_GUI
 
         public void TreeListFocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
         {
-            m_currentNote = e.Node.GetValue(GUIConstants.TREE_LIST_ORIGINAL_NOTE_COLUMN) as INode;
-            if (m_currentNote != null)
+            m_currentNode = e.Node.GetValue(GUIConstants.TREE_LIST_ORIGINAL_NOTE_COLUMN) as INode;
+            if (m_currentNode != null)
             {
                 INodeCollection nodesList = null;
-                if (m_currentNote is BaseContainerNode)
+                if (m_currentNode is BaseContainerNode)
                 {
-                    nodesList = m_currentNote.Nodes;
+                    nodesList = m_currentNode.Nodes;
                 }
-                else if ((m_currentNote is Node) && (m_lastNode != null ? m_currentNote.Parent != m_lastNode.Parent : true))
+                else if ((m_currentNode is Node) && (m_lastNode != null ? m_currentNode.Parent != m_lastNode.Parent : true))
                 {
-                    nodesList = m_currentNote.Parent.Nodes;
+                    nodesList = m_currentNode.Parent.Nodes;
                 }
                 else
                 {
                     return;
                 }
-                SetGridData(nodesList);
+                SetGridData(nodesList); //Сделать по клину на пустое место в дерево currentNode = Case
             }
         }
 
@@ -73,7 +73,7 @@ namespace CloudTask_GUI
             INodeCollection nodesList = null;
             if (m_currentCase == newCase)
             {
-                nodesList = (m_currentNote != null && m_currentNote is BaseContainerNode) ? m_currentNote.Nodes : m_currentNote.Parent.Nodes;
+                nodesList = (m_currentNode != null && m_currentNode is BaseContainerNode) ? m_currentNode.Nodes : m_currentNode.Parent.Nodes;
             }
             else 
             {
@@ -99,7 +99,7 @@ namespace CloudTask_GUI
             m_currentGridControl.DataSource = nodes;
             m_currentGridControl.EndUpdate();
 
-            m_lastNode = m_currentNote;
+            m_lastNode = m_currentNode;
         }
         //public void gridView_CustomUnboundColumnData(object sender, CustomColumnDataEventArgs e) //image in grind
         //{

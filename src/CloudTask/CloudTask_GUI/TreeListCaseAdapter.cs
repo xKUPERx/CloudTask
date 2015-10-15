@@ -15,7 +15,7 @@ namespace CloudTask_GUI
         #region Members
 
         public Case m_currentCase {get; set;}
-        private DevExpress.XtraTreeList.TreeList m_treeList { get; set; }
+        public DevExpress.XtraTreeList.TreeList m_treeList { get; private set; }
 
         #endregion Members
 

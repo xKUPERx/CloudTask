@@ -46,6 +46,7 @@ namespace CloudTask_GUI
             treeList.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(propertiesControlCaseAdapter.TreeListFocusedNodeChanged);
 
             tableGridPopupMenu = new TableGridPopupMenu(this, tableGridCaseAdapter); //Create popup menu
+            treeListPopupMenu = new TreeListPopupMenu(this, treeListCaseAdapter);
             
         }
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
+using CloudTask_Model;
 
 namespace CloudTask_Model
 {
@@ -18,12 +19,15 @@ namespace CloudTask_Model
 
         #region Constructors
 
-        public Category(INode parent = null, string CategoryName = "Default Category")
+        public Category(INode parent, string CategoryName)
             : base(parent, CategoryName)
         {
             StateImageIndex = ImageConstants.TREE_LIST_CATEGORY_INDEX;
         }
 
+        public Category()
+            : this(null, "Default Category")
+        { }
         #endregion Constructors      
     }
 }
