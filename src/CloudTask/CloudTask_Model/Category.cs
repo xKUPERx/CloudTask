@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
+using Newtonsoft.Json;
 using CloudTask_Model;
 
 namespace CloudTask_Model
@@ -18,7 +19,7 @@ namespace CloudTask_Model
         #endregion Members
 
         #region Constructors
-
+        [JsonConstructor]
         public Category(INode parent, string CategoryName)
             : base(parent, CategoryName)
         {
