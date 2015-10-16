@@ -198,7 +198,7 @@ namespace CloudTask_GUI
             // 
             this.xtraTabControlNodesProperties.Location = new System.Drawing.Point(347, 556);
             this.xtraTabControlNodesProperties.Name = "xtraTabControlNodesProperties";
-            this.xtraTabControlNodesProperties.SelectedTabPage = this.xtraTabPageTaskText;
+            this.xtraTabControlNodesProperties.SelectedTabPage = this.xtraTabPageNodesProperties;
             this.xtraTabControlNodesProperties.Size = new System.Drawing.Size(849, 163);
             this.xtraTabControlNodesProperties.TabIndex = 3;
             this.xtraTabControlNodesProperties.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {

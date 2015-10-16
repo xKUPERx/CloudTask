@@ -41,7 +41,7 @@ namespace CloudTask_GUI
             
             treeList.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(tableGridCaseAdapter.TreeListFocusedNodeChanged);
 
-            xtraTabControlCaseAdapter propertiesControlCaseAdapter = new CloudTask_GUI.xtraTabControlCaseAdapter(xtraTabControlNodesProperties);
+            xtraTabControlCaseAdapter propertiesControlCaseAdapter = new xtraTabControlCaseAdapter(xtraTabControlNodesProperties);
             propertiesControlCaseAdapter.SetupControls();
             mainGridView.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(propertiesControlCaseAdapter.gridView_FocusedRowChanged);
             treeList.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(propertiesControlCaseAdapter.TreeListFocusedNodeChanged);

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using DevExpress.XtraGrid.Views.Base;
 
 using CloudTask_Model;
-namespace CloudTask_GUI
+
+namespace CloudTask_GUI.Controllers
 {
     class xtraTabControlCaseAdapter
     {
@@ -105,7 +106,7 @@ namespace CloudTask_GUI
                 m_TaskFinishDateControl.Text = node.FinishDate.ToString();
                 m_TaskIsDoneControl.Checked = node.IsDone;
                 m_TaskIsDoneControl.CheckState = node.IsDone == true ? System.Windows.Forms.CheckState.Checked : System.Windows.Forms.CheckState.Unchecked;
-                m_TaskTextControl.Text = node.TaskText;
+                m_TaskTextControl.Text = node.TaskText;                
             }
             catch (System.Exception ex)
             {
@@ -157,6 +158,7 @@ namespace CloudTask_GUI
                 {
                     m_currentNote.TaskText = m_TaskTextControl.Text;
                 }
+                CaseKeeper.CurrentCase.OnCaseUpdate();
             }
         }
         #endregion Methods
