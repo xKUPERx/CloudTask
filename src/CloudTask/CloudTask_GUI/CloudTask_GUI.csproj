@@ -59,6 +59,7 @@
     <Compile Include="CLoudTaskBasePopupMenu.cs" />
     <Compile Include="Controllers\CaseKeeper.cs" />
     <Compile Include="Controllers\PopupMenuController.cs" />
+    <Compile Include="DialogBoxTemplates.cs" />
     <Compile Include="GUIConstants.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

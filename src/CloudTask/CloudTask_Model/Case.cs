@@ -49,9 +49,21 @@ namespace CloudTask_Model
            }
        }
 
+       public void CopyDelegate(Case newCase)
+       {
+           if (this.CaseUpdate != null)
+           {
+               newCase.CaseUpdate = (CaseUpdateEventHandler)this.CaseUpdate.Clone();
+           }
+       }
+
+
        public void OnCaseUpdate()
        {
-           CaseUpdate(this);
+           if (CaseUpdate != null)
+           {
+               CaseUpdate(this);
+           }
        }
        #endregion Methods
 

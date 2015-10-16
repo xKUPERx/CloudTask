@@ -9,6 +9,8 @@ namespace CloudTask_GUI
     class CloudTaskBackstageViewMenu
     {
         #region Members
+        private Controllers.MainMenuController controller;
+
         private DevExpress.XtraBars.Ribbon.RibbonControl m_ribbonControl;
 
         private DevExpress.XtraBars.Ribbon.BackstageViewControl m_backstageViewControl;
@@ -29,6 +31,7 @@ namespace CloudTask_GUI
 
         public CloudTaskBackstageViewMenu(System.Windows.Forms.Control form, DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl)
         {
+            controller = new Controllers.MainMenuController();
             m_ribbonControl = ribbonControl;
             m_backstageViewControl = new DevExpress.XtraBars.Ribbon.BackstageViewControl();
             m_backstageViewClientControl = new DevExpress.XtraBars.Ribbon.BackstageViewClientControl();
@@ -127,7 +130,7 @@ namespace CloudTask_GUI
             m_backstageViewTabSaveCase.ContentControl = m_backstageViewClientControl;
             m_backstageViewTabSaveCase.Glyph = global::CloudTask_GUI.Properties.Resources.save_32x32;
             m_backstageViewTabSaveCase.Name = "backstageViewTabSaveCase";
-            m_backstageViewTabSaveCase.Selected = true;
+            m_backstageViewTabSaveCase.Selected = false;
             // 
             // backstageViewButtonSettings
             // 
@@ -156,6 +159,10 @@ namespace CloudTask_GUI
             ((System.ComponentModel.ISupportInitialize)(m_backstageViewControl)).EndInit();
             m_backstageViewControl.ResumeLayout(false);
             m_backstageViewClientControl.ResumeLayout(false);
+
+            m_TabSaveButtonSaveAs.Click += new EventHandler(controller.OnCaseSaveAs);
+            m_TabSaveButtonSave.Click += new EventHandler(controller.OnCaseSave);
+            m_backstageViewButtonOpenCase.ItemClick += new DevExpress.XtraBars.Ribbon.BackstageViewItemEventHandler(controller.OnOpenCase);
         }
 
         #endregion Constructors

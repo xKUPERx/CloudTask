@@ -11,5 +11,6 @@ namespace CloudTask_GUI.Controllers
     {
         public static Case CurrentCase { get; set; }
         public static string CurrentCasePath { get; set; }
+        public static string AppPath { get; set; }
     }
 }

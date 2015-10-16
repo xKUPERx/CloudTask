@@ -21,9 +21,8 @@ namespace CloudTask_GUI
         public MainForm()
         {
             InitializeComponent();
-            
-            
-            m_appPath = Application.StartupPath;
+                      
+            CaseKeeper.AppPath = Application.StartupPath;
 
             #region tests
             FillTestCase();

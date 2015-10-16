@@ -32,7 +32,7 @@ namespace CloudTask_Model
 
         #region Methods
 
-        public void SaveCaseToFile(Case currentCase)
+        public bool SaveCaseToFile(Case currentCase)
         {
             try
             {
@@ -43,16 +43,18 @@ namespace CloudTask_Model
                         TypeNameHandling = TypeNameHandling.Auto,
                         PreserveReferencesHandling = PreserveReferencesHandling.Objects
                     });
-                    outPutFileStream.WriteLine(jsonTypeNameAuto);
+                    outPutFileStream.WriteLine(jsonTypeNameAuto);                   
                 }
+                return true;
             }
             catch(Exception ex)
             {
                 Logger.WriteInfoMessage(String.Format("\nSave case to file error:\n\tFile name - {0};\n\tException - {1}", m_fileToParse, ex.ToString()));
+                return false;
             }
         }
 
-        public void LoadCaseFromFile(out Case currentCase)
+        public bool LoadCaseFromFile(out Case currentCase)
         {
             try
             {
@@ -69,11 +71,13 @@ namespace CloudTask_Model
                 {
                     RestoreParentLink(currentCase);
                 }
+                return true;
             }
             catch (Exception ex)
             {
                 currentCase = null;
                 Logger.WriteInfoMessage(String.Format("\nLoad case from file error:\n\tFile name - {0};\n\tException - {1}", m_fileToParse, ex.ToString()));
+                return false;
             }
         }
 
