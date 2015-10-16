@@ -14,10 +14,10 @@ namespace CloudTask_GUI
         
         #region Members
         public INode m_currentNode { get; set; }
-        public Case m_currentCase { get; set; }
         public DevExpress.XtraBars.PopupMenu m_popupMenu {get;private set;}
         public DevExpress.XtraBars.BarManager m_barManager { get; private set; }
         public Dictionary<string, DevExpress.XtraBars.BarButtonItem> m_barButtonsMap { get; private set; }
+        private Controllers.PopupMenuController controller;
         #endregion Members
 
         #region Constructors
@@ -26,6 +26,7 @@ namespace CloudTask_GUI
                 m_popupMenu = new DevExpress.XtraBars.PopupMenu();
                 m_barManager = new DevExpress.XtraBars.BarManager();
                 m_barButtonsMap = new Dictionary<string, BarButtonItem>();
+                controller = new Controllers.PopupMenuController();
 
                 System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
                 ((System.ComponentModel.ISupportInitialize)(this.m_popupMenu)).BeginInit();
@@ -72,47 +73,21 @@ namespace CloudTask_GUI
 
         private void barManagerItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            try
-            {
                 if (e.Item.Caption == GUIConstants.BAR_BUTTON_ADD_NEW_TASK_CAPTION)
                 {
-                    AddNewNodeClicked<Node>();
+                    controller.AddNewNodeClicked<Node>(m_currentNode);
                 }
                 else if (e.Item.Caption == GUIConstants.BAR_BUTTON_ADD_NEW_CATEGORY_CAPTION)
                 {
-                    AddNewNodeClicked<Category>();
+                    controller.AddNewNodeClicked<Category>(m_currentNode);
                 }
                 else if (e.Item.Caption == GUIConstants.BAR_BUTTON_DELETE_NODE_CAPTION)
                 {
-                    m_currentNode.Parent.Nodes.Remove(m_currentNode);
+                    controller.DeleteNode(m_currentNode);
                 }
-                m_currentCase.OnCaseUpdate();
-            }
-            catch (System.Exception ex)
-            {
-                Log.Logger.WriteErrorMessage(string.Format("Error during proccesing TableGridPopupMenu click, exception:\n\t{0}", ex.ToString()));
-            }
         }
 
-        private void AddNewNodeClicked<T>() where T : INode, new()
-        {
-            T itemToAdd = new T();
-            if (m_currentNode == null && m_currentCase != null)
-            {
-                itemToAdd.Parent = m_currentCase;
-                m_currentCase.Nodes.Add(itemToAdd);
-            }
-            else if (m_currentNode is BaseContainerNode)
-            {
-                itemToAdd.Parent = m_currentNode;
-                m_currentNode.Nodes.Add(itemToAdd);
-            }
-            else
-            {
-                itemToAdd.Parent = m_currentNode.Parent;
-                m_currentNode.Parent.Nodes.Add(itemToAdd);
-            }
-        }
+
         #endregion Methods
     }
 }

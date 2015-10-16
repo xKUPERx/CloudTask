@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using DevExpress.XtraBars;
 using System.ComponentModel;
 using DevExpress.XtraTreeList;
+using DevExpress.XtraTreeList.ViewInfo;
+using System.Windows.Forms;
+
 using CloudTask_Model;
 
 namespace CloudTask_GUI
@@ -13,51 +16,51 @@ namespace CloudTask_GUI
     class TreeListPopupMenu : CLoudTaskBasePopupMenu
     {
         #region Members
-     
-        private TreeListCaseAdapter m_treeListCaseAdapter { get; set; }
+
+        private Controllers.TreeListCaseAdapter m_treeListCaseAdapter { get; set; }
 
         #endregion Members
 
         #region Constructors
-        public TreeListPopupMenu(System.Windows.Forms.Control form, TreeListCaseAdapter treeListCaseAdapter)
+        public TreeListPopupMenu(System.Windows.Forms.Control form, Controllers.TreeListCaseAdapter treeListCaseAdapter)
             :base(form)
         {            
             m_treeListCaseAdapter = treeListCaseAdapter;
-            m_currentCase = m_treeListCaseAdapter.m_currentCase;
-            m_treeListCaseAdapter.m_treeList.PopupMenuShowing += new DevExpress.XtraTreeList.PopupMenuShowingEventHandler(this.treeListShowGridMenu);
+            m_treeListCaseAdapter.m_treeList.MouseDown += new MouseEventHandler(this.treeListMouseDown);
         }
 
         ~TreeListPopupMenu()
         {
-            m_treeListCaseAdapter.m_treeList.PopupMenuShowing -= new DevExpress.XtraTreeList.PopupMenuShowingEventHandler(this.treeListShowGridMenu);
+            m_treeListCaseAdapter.m_treeList.MouseDown -= new MouseEventHandler(this.treeListMouseDown);
         }
         #endregion Constructors
 
         #region Methods
-        private void treeListShowGridMenu(object sender, PopupMenuShowingEventArgs e) 
+
+        private void treeListMouseDown(object sender, MouseEventArgs e)
         {
-            try
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 m_popupMenu.ItemLinks.Clear();
                 TreeList treeList = sender as TreeList;
-                TreeListHitInfo hitInfo = treeList.CalcHitInfo(e.Point);
+                RowInfo rowInfo = treeList.ViewInfo.GetRowInfoByPoint(e.Location);
 
                 m_popupMenu.ItemLinks.Add(m_barButtonsMap[GUIConstants.BAR_BUTTON_ADD_NEW_TASK_CAPTION]);
-                m_popupMenu.ItemLinks.Add(m_barButtonsMap[GUIConstants.BAR_BUTTON_ADD_NEW_CATEGORY_CAPTION]);
-                if (hitInfo.Node != null)
+                m_popupMenu.ItemLinks.Add(m_barButtonsMap[GUIConstants.BAR_BUTTON_ADD_NEW_CATEGORY_CAPTION]);               
+                if (rowInfo != null)
                 {
-                    m_currentNode = hitInfo.Node.GetValue(GUIConstants.TREE_LIST_ORIGINAL_NOTE_COLUMN) as INode;
-                    treeList.FocusedNode = hitInfo.Node;
+                    m_currentNode = rowInfo.Node.GetValue(GUIConstants.TREE_LIST_ORIGINAL_NOTE_COLUMN) as INode;
+                    treeList.FocusedNode = rowInfo.Node;
                     m_popupMenu.ItemLinks.Add(m_barButtonsMap[GUIConstants.BAR_BUTTON_DELETE_NODE_CAPTION]);
-
                 }
-                m_popupMenu.ShowPopup(m_barManager, treeList.PointToScreen(e.Point));
-            }
-            catch (System.Exception ex)
-            {
-                Log.Logger.WriteErrorMessage(string.Format("Can't build TableGridPopupMenu, exception:\n\t{0}", ex.ToString()));
+                else 
+                {
+                    m_currentNode = Controllers.CaseKeeper.CurrentCase;
+                }
+                m_popupMenu.ShowPopup(m_barManager, treeList.PointToScreen(e.Location));
             }
         }
+
         #endregion Methods
     }
 }

@@ -10,25 +10,23 @@ using DevExpress.XtraTreeList.Nodes;
 using CloudTask_Model;
 using System.Drawing;
 
-namespace CloudTask_GUI
+namespace CloudTask_GUI.Controllers
 {
     public class TreeListCaseAdapter : TreeList.IVirtualTreeListData
     {
         #region Members
 
-        public Case m_currentCase {get; set;}
         public DevExpress.XtraTreeList.TreeList m_treeList { get; private set; }
 
         #endregion Members
 
         #region Constructors
 
-        public TreeListCaseAdapter(Case newCase, DevExpress.XtraTreeList.TreeList treeList)
+        public TreeListCaseAdapter(DevExpress.XtraTreeList.TreeList treeList)
         {
-            m_currentCase = newCase;
             m_treeList = treeList;
             m_treeList.DataSource = this;
-            m_currentCase.CaseUpdate += new Case.CaseUpdateEventHandler(this.OnCaseUpdate);
+            CaseKeeper.CurrentCase.CaseUpdate += new Case.CaseUpdateEventHandler(this.OnCaseUpdate);
             m_treeList.GetStateImage += new DevExpress.XtraTreeList.GetStateImageEventHandler(this.TreeListGetStateImage);
             m_treeList.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeList1_DragDrop);
             m_treeList.DragNodesMode = TreeListDragNodesMode.Advanced;
@@ -39,7 +37,7 @@ namespace CloudTask_GUI
         {
             m_treeList.GetStateImage -= new DevExpress.XtraTreeList.GetStateImageEventHandler(this.TreeListGetStateImage);
             m_treeList.DragDrop -= new System.Windows.Forms.DragEventHandler(this.treeList1_DragDrop);
-            m_currentCase.CaseUpdate -= new Case.CaseUpdateEventHandler(this.OnCaseUpdate);
+            CaseKeeper.CurrentCase.CaseUpdate -= new Case.CaseUpdateEventHandler(this.OnCaseUpdate);
         }
         #endregion Constructors
 
@@ -49,7 +47,7 @@ namespace CloudTask_GUI
         {
             if (info.Node is TreeListCaseAdapter)
             {
-                info.Children = ((TreeListCaseAdapter)info.Node).m_currentCase.Nodes;
+                info.Children = CaseKeeper.CurrentCase.Nodes;
             }
             else
             {
@@ -87,12 +85,7 @@ namespace CloudTask_GUI
         }
 
         private void OnCaseUpdate(object sender)
-        {
-            Case newCase = sender as Case;
-            if (newCase != null && newCase != m_currentCase)
-            {
-                m_currentCase = newCase;
-            }           
+        {          
             m_treeList.RefreshDataSource();
         }
 
@@ -120,7 +113,7 @@ namespace CloudTask_GUI
                     IdragNode.Parent = ItargetNode;
                     treeList.SetNodeIndex(dragNode, treeList.GetNodeIndex(targetNode));
                     e.Effect = System.Windows.Forms.DragDropEffects.None;
-                    m_currentCase.OnCaseUpdate();
+                    CaseKeeper.CurrentCase.OnCaseUpdate();
                 }
 
             }

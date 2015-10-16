@@ -17,17 +17,16 @@ namespace CloudTask_GUI
     class TableGridPopupMenu : CLoudTaskBasePopupMenu
     {
         #region Members
-        private TableGridCaseAdapter m_tableGridCaseAdapter { get; set; }
+        private Controllers.TableGridCaseAdapter m_tableGridCaseAdapter { get; set; }
         private DevExpress.XtraGrid.Views.Grid.GridView m_gridView { get; set; }
 
         #endregion Members
 
         #region Constructors
-        public TableGridPopupMenu(System.Windows.Forms.Control form, TableGridCaseAdapter tableGridCaseAdapter)
+        public TableGridPopupMenu(System.Windows.Forms.Control form, Controllers.TableGridCaseAdapter tableGridCaseAdapter)
             :base(form)
         {            
                 m_tableGridCaseAdapter = tableGridCaseAdapter;
-                m_currentCase = m_tableGridCaseAdapter.m_currentCase;
                 m_gridView = (DevExpress.XtraGrid.Views.Grid.GridView)m_tableGridCaseAdapter.m_currentGridControl.MainView;            
                 m_gridView.PopupMenuShowing += new PopupMenuShowingEventHandler(this.gridViewShowGridMenu);
         }

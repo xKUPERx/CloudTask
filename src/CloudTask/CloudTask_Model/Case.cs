@@ -48,12 +48,14 @@ namespace CloudTask_Model
                return true;
            }
        }
-       #endregion Methods
-
 
        public void OnCaseUpdate()
        {
            CaseUpdate(this);
        }
+       #endregion Methods
+
+
+
    }
 }

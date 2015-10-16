@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Resources;
 using CloudTask_Model;
-
+using CloudTask_GUI.Controllers;
 //using DevExpress.XtraGrid.Columns;
 
 namespace CloudTask_GUI
@@ -29,14 +29,15 @@ namespace CloudTask_GUI
             FillTestCase();
             TestJsonParser();
             #endregion tests
-
-            TreeListCaseAdapter treeListCaseAdapter = new TreeListCaseAdapter(m_currentCase, treeList);
+           
+            CaseKeeper.CurrentCase = m_currentCase;
+            TreeListCaseAdapter treeListCaseAdapter = new TreeListCaseAdapter(treeList);
             treeList.StateImageList = sharedTreeListImageCollection;
 
             mainGridView.OptionsBehavior.AutoPopulateColumns = false;
             //mainGridView.Images = sharedTreeListImageCollection;
             //mainGridView.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(tableGridCaseAdapter.gridView_CustomUnboundColumnData); image in grid
-            TableGridCaseAdapter tableGridCaseAdapter = new TableGridCaseAdapter(m_currentCase ,mainGridControl);
+            TableGridCaseAdapter tableGridCaseAdapter = new TableGridCaseAdapter(mainGridControl);
             
             treeList.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(tableGridCaseAdapter.TreeListFocusedNodeChanged);
 
@@ -47,6 +48,7 @@ namespace CloudTask_GUI
 
             tableGridPopupMenu = new TableGridPopupMenu(this, tableGridCaseAdapter); //Create popup menu
             treeListPopupMenu = new TreeListPopupMenu(this, treeListCaseAdapter);
+            cloudTaskBackstageViewMenu = new CloudTaskBackstageViewMenu(this, ribbonControl1);
             
         }
 

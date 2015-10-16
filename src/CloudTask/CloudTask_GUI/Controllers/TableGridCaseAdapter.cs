@@ -9,14 +9,14 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Columns;
 
 
-namespace CloudTask_GUI
+namespace CloudTask_GUI.Controllers
 {
     class TableGridCaseAdapter
     {
         #region Members
 
-        public Case m_currentCase { get; set; }
-        public INode m_currentNode { get; set; }
+        private Case m_currentCase { get; set; }
+        private INode m_currentNode { get; set; }
         public DevExpress.XtraGrid.GridControl m_currentGridControl { get; set; }
 
         private INode m_lastNode { get; set; }
@@ -24,9 +24,9 @@ namespace CloudTask_GUI
 
         #region Constructors
 
-        public TableGridCaseAdapter(Case newCase, DevExpress.XtraGrid.GridControl newGridControl)
+        public TableGridCaseAdapter(DevExpress.XtraGrid.GridControl newGridControl)
         {
-            m_currentCase = newCase;
+            m_currentCase = CaseKeeper.CurrentCase;
             m_currentGridControl = newGridControl;
             m_currentCase.CaseUpdate += new Case.CaseUpdateEventHandler(this.OnCaseUpdate);
         }
@@ -50,15 +50,20 @@ namespace CloudTask_GUI
                 {
                     nodesList = m_currentNode.Nodes;
                 }
+
                 else if ((m_currentNode is Node) && (m_lastNode != null ? m_currentNode.Parent != m_lastNode.Parent : true))
                 {
                     nodesList = m_currentNode.Parent.Nodes;
+                }
+                else if (m_currentNode.Parent == m_currentCase)
+                {
+                    nodesList = m_currentCase.Nodes;
                 }
                 else
                 {
                     return;
                 }
-                SetGridData(nodesList); //Сделать по клину на пустое место в дерево currentNode = Case
+                SetGridData(nodesList);
             }
         }
 

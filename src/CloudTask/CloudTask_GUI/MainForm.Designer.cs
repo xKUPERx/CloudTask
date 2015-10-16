@@ -156,6 +156,7 @@ namespace CloudTask_GUI
             this.NodeName.Name = "NodeName";
             this.NodeName.Visible = true;
             this.NodeName.VisibleIndex = 0;
+            this.NodeName.Width = 165;
             // 
             // TaskText
             // 
@@ -164,6 +165,7 @@ namespace CloudTask_GUI
             this.TaskText.Name = "TaskText";
             this.TaskText.Visible = true;
             this.TaskText.VisibleIndex = 1;
+            this.TaskText.Width = 166;
             // 
             // StartDate
             // 
@@ -172,6 +174,7 @@ namespace CloudTask_GUI
             this.StartDate.Name = "StartDate";
             this.StartDate.Visible = true;
             this.StartDate.VisibleIndex = 2;
+            this.StartDate.Width = 164;
             // 
             // FinishDate
             // 
@@ -180,6 +183,7 @@ namespace CloudTask_GUI
             this.FinishDate.Name = "FinishDate";
             this.FinishDate.Visible = true;
             this.FinishDate.VisibleIndex = 3;
+            this.FinishDate.Width = 164;
             // 
             // IsDone
             // 
@@ -188,6 +192,7 @@ namespace CloudTask_GUI
             this.IsDone.Name = "IsDone";
             this.IsDone.Visible = true;
             this.IsDone.VisibleIndex = 4;
+            this.IsDone.Width = 167;
             // 
             // xtraTabControlNodesProperties
             // 
@@ -318,9 +323,7 @@ namespace CloudTask_GUI
             // barButtonItem1
             // 
             this.barButtonItem1.Caption = "delete";
-            this.barButtonItem1.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.Glyph")));
             this.barButtonItem1.Id = 1;
-            this.barButtonItem1.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.LargeGlyph")));
             this.barButtonItem1.Name = "barButtonItem1";
             // 
             // ribbonPage1
@@ -433,11 +436,13 @@ namespace CloudTask_GUI
 
         private TableGridPopupMenu tableGridPopupMenu;
         private TreeListPopupMenu treeListPopupMenu;
+        private CloudTaskBackstageViewMenu cloudTaskBackstageViewMenu;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+
 
 
 
