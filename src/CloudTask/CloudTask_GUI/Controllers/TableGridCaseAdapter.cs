@@ -16,11 +16,12 @@ namespace CloudTask_GUI.Controllers
         #region Members
 
 
-        public DevExpress.XtraGrid.GridControl m_currentGridControl { get; set; }
+        public DevExpress.XtraGrid.GridControl CurrentGridControl { get; set; }
         private Case m_currentCase { get; set; }
         private INode m_currentNode { get; set; }
         private INode m_lastNode { get; set; }
         private GridView m_gridView{ get; set; }
+        public List<Node> DataSourceList { get; private set; }
         #endregion Members
 
         #region Constructors
@@ -28,9 +29,9 @@ namespace CloudTask_GUI.Controllers
         public TableGridCaseAdapter(DevExpress.XtraGrid.GridControl newGridControl)
         {
             m_currentCase = CaseKeeper.CurrentCase;
-            m_currentGridControl = newGridControl;
-            m_currentCase.CaseUpdate += new Case.CaseUpdateEventHandler(this.OnCaseUpdate);
-            m_gridView = ((GridView)m_currentGridControl.MainView);
+            CurrentGridControl = newGridControl;
+            CaseKeeper.CaseUpdate += new CaseKeeper.CaseUpdateEventHandler(this.OnCaseUpdate);
+            m_gridView = ((GridView)CurrentGridControl.MainView);
             m_gridView.CellValueChanged += new CellValueChangedEventHandler(GridViewCellValueChanged);
         }
 
@@ -70,6 +71,11 @@ namespace CloudTask_GUI.Controllers
             }
         }
 
+        public INode GetDataSourceListParent()
+        {
+            return DataSourceList.Count > 0 ? DataSourceList[0].Parent : null;
+        }
+
         private void OnCaseUpdate(object sender)
         {
             Case newCase = sender as Case;
@@ -100,26 +106,26 @@ namespace CloudTask_GUI.Controllers
 
         private void SetGridData(INodeCollection nodesList)    
         {
-            List<Node> nodes = new List<Node>();
+            DataSourceList = new List<Node>();
             foreach (INode node in nodesList)
             {
                 Node temp = node as Node;
                 if (temp != null)
                 {
-                    nodes.Add(temp);
+                    DataSourceList.Add(temp);
                 }
             }
 
-            m_currentGridControl.BeginUpdate();
-            m_currentGridControl.DataSource = nodes;
-            m_currentGridControl.EndUpdate();
+            CurrentGridControl.BeginUpdate();
+            CurrentGridControl.DataSource = DataSourceList;
+            CurrentGridControl.EndUpdate();
 
             m_lastNode = m_currentNode;
         }
 
         private void GridViewCellValueChanged(object sender, CellValueChangedEventArgs e)
         {
-            m_currentCase.OnCaseUpdate();
+            CaseKeeper.OnCaseUpdate();
         }
 
 

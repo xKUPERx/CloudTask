@@ -26,18 +26,18 @@ namespace CloudTask_GUI.Controllers
         {
             m_treeList = treeList;
             m_treeList.DataSource = this;
-            CaseKeeper.CurrentCase.CaseUpdate += new Case.CaseUpdateEventHandler(this.OnCaseUpdate);
+            CaseKeeper.CaseUpdate += new CaseKeeper.CaseUpdateEventHandler(this.OnCaseUpdate);
             m_treeList.GetStateImage += new DevExpress.XtraTreeList.GetStateImageEventHandler(this.TreeListGetStateImage);
             m_treeList.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeList1_DragDrop);
             m_treeList.DragNodesMode = TreeListDragNodesMode.Advanced;
-            m_treeList.OptionsBehavior.DragNodes = true;                     
+            m_treeList.OptionsBehavior.DragNodes = true;      
         }
 
         ~TreeListCaseAdapter()
         {
             m_treeList.GetStateImage -= new DevExpress.XtraTreeList.GetStateImageEventHandler(this.TreeListGetStateImage);
             m_treeList.DragDrop -= new System.Windows.Forms.DragEventHandler(this.treeList1_DragDrop);
-            CaseKeeper.CurrentCase.CaseUpdate -= new Case.CaseUpdateEventHandler(this.OnCaseUpdate);
+            CaseKeeper.CaseUpdate -= new CaseKeeper.CaseUpdateEventHandler(this.OnCaseUpdate);
         }
         #endregion Constructors
 
@@ -113,7 +113,7 @@ namespace CloudTask_GUI.Controllers
                     IdragNode.Parent = ItargetNode;
                     treeList.SetNodeIndex(dragNode, treeList.GetNodeIndex(targetNode));
                     e.Effect = System.Windows.Forms.DragDropEffects.None;
-                    CaseKeeper.CurrentCase.OnCaseUpdate();
+                    CaseKeeper.OnCaseUpdate();
                 }
 
             }

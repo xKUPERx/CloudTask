@@ -158,7 +158,7 @@ namespace CloudTask_GUI.Controllers
                 {
                     m_currentNote.TaskText = m_TaskTextControl.Text;
                 }
-                CaseKeeper.CurrentCase.OnCaseUpdate();
+                CaseKeeper.OnCaseUpdate();
             }
         }
         #endregion Methods

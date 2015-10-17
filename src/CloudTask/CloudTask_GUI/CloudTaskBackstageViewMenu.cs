@@ -160,9 +160,12 @@ namespace CloudTask_GUI
             m_backstageViewControl.ResumeLayout(false);
             m_backstageViewClientControl.ResumeLayout(false);
 
-            m_TabSaveButtonSaveAs.Click += new EventHandler(controller.OnCaseSaveAs);
-            m_TabSaveButtonSave.Click += new EventHandler(controller.OnCaseSave);
-            m_backstageViewButtonOpenCase.ItemClick += new DevExpress.XtraBars.Ribbon.BackstageViewItemEventHandler(controller.OnOpenCase);
+            m_TabSaveButtonSaveAs.Click += new EventHandler(controller.CaseSaveAsClicked);
+            m_TabSaveButtonSave.Click += new EventHandler(controller.CaseSaveClicked);
+            m_backstageViewButtonOpenCase.ItemClick += new DevExpress.XtraBars.Ribbon.BackstageViewItemEventHandler(controller.OpenCaseClicked);
+            m_backstageViewButtonNewCase.ItemClick += new DevExpress.XtraBars.Ribbon.BackstageViewItemEventHandler(controller.NewCaseClicked);
+            m_backstageViewButtonDeleteCurrentCase.ItemClick += new DevExpress.XtraBars.Ribbon.BackstageViewItemEventHandler(controller.DeleteCaseClicked);
+            m_backstageViewButtonExit.ItemClick += new DevExpress.XtraBars.Ribbon.BackstageViewItemEventHandler(controller.ExitClicked);
         }
 
         #endregion Constructors

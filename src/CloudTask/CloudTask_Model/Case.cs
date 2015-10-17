@@ -12,8 +12,6 @@ namespace CloudTask_Model
    public class Case : INode
    {
        #region Members
-       public delegate void CaseUpdateEventHandler(object sender);
-       public event CaseUpdateEventHandler CaseUpdate;
 
        public string ID { get; private set; }
 
@@ -49,22 +47,6 @@ namespace CloudTask_Model
            }
        }
 
-       public void CopyDelegate(Case newCase)
-       {
-           if (this.CaseUpdate != null)
-           {
-               newCase.CaseUpdate = (CaseUpdateEventHandler)this.CaseUpdate.Clone();
-           }
-       }
-
-
-       public void OnCaseUpdate()
-       {
-           if (CaseUpdate != null)
-           {
-               CaseUpdate(this);
-           }
-       }
        #endregion Methods
 
 

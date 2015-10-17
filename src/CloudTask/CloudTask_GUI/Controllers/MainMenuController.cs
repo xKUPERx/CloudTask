@@ -11,21 +11,49 @@ namespace CloudTask_GUI.Controllers
 {
     class MainMenuController
     {
+        #region Delegates
+
+        public void CaseSaveAsClicked(Object sender, EventArgs e)
+        {
+            this.SaveCaseAs();
+        }
+
+        public void CaseSaveClicked(Object sender, EventArgs e)
+        {
+            this.SaveCase();
+        }
+
+        public void OpenCaseClicked(object sender, BackstageViewItemEventArgs e)
+        {
+            this.LoadCase();
+        }
+
+        public void NewCaseClicked(object sender, BackstageViewItemEventArgs e)
+        {
+            this.CreateNewCase();
+        }
+
+        public void DeleteCaseClicked(object sender, BackstageViewItemEventArgs e)
+        {
+            this.DeleteCase();
+        }
+
+        public void ExitClicked(object sender, BackstageViewItemEventArgs e)
+        {
+            DialogResult dialogResult = DialogBoxTemplates.ShowYesNoCancelDialogBox(CaseKeeper.AppMainForm, CloudTask_GUI.Properties.Resources.ResourceManager.GetString("SaveChangesInCurrentCase"));
+            if (dialogResult != DialogResult.Cancel)
+            {
+                if (dialogResult == DialogResult.Yes)
+                {
+                    SaveCase();
+                }
+                Application.Exit();
+            }
+        }
+
+        #endregion Delegates
+
         #region Methods
-        public void OnCaseSaveAs(Object sender, EventArgs e)
-        {
-            SaveCaseAs();
-        }
-
-        public void OnCaseSave(Object sender, EventArgs e)
-        {
-            SaveCase();
-        }
-
-        public void OnOpenCase(object sender, BackstageViewItemEventArgs e)
-        {
-            LoadCase();
-        }
 
         private void SaveCaseAs()
         {
@@ -70,7 +98,7 @@ namespace CloudTask_GUI.Controllers
             }
             else 
             {
-                if (DialogBoxTemplates.ShowErrorDialogBox("Can not save case to current path! Press \"yes\" to try again.") == DialogResult.OK)
+                if (DialogBoxTemplates.ShowErrorDialogBox(CaseKeeper.AppMainForm, CloudTask_GUI.Properties.Resources.ResourceManager.GetString("CaseSaveErrorMessageForDialogBox")) == DialogResult.OK)
                 {
                     SaveCaseAs();
                 }
@@ -100,18 +128,57 @@ namespace CloudTask_GUI.Controllers
             if (loadResult)
             {
                 CaseKeeper.CurrentCasePath = path;
-                CaseKeeper.CurrentCase.CopyDelegate(loadedCase);
                 CaseKeeper.CurrentCase = loadedCase;              
-                CaseKeeper.CurrentCase.OnCaseUpdate();
             }
             else
             {
-                if (DialogBoxTemplates.ShowErrorDialogBox("Can not load case from current path! Press \"yes\" to load another case file.") == DialogResult.OK)
+                if (DialogBoxTemplates.ShowErrorDialogBox(CaseKeeper.AppMainForm, CloudTask_GUI.Properties.Resources.ResourceManager.GetString("CaseLoadErrorMessageForDialogBox")) == DialogResult.OK)
                 {
                     LoadCase();
                 }
             }
         }
+
+        private void CreateNewCase()
+        {
+            DialogResult dialogResult = DialogBoxTemplates.ShowYesNoCancelDialogBox(CaseKeeper.AppMainForm, CloudTask_GUI.Properties.Resources.ResourceManager.GetString("SaveChangesInCurrentCase"));
+            if (dialogResult != DialogResult.Cancel)
+            {
+                if (dialogResult == DialogResult.Yes)
+                {
+                    SaveCase();
+                }                
+                NewCaseFormController newCaseFormController = new NewCaseFormController();
+                newCaseFormController.ShowForm(CaseKeeper.AppMainForm);
+                Case newCase = newCaseFormController.m_newCase;
+                if (newCase != null)
+                {
+                    CaseKeeper.CurrentCase = newCase;
+                }              
+            }
+        }
+
+        private void DeleteCase()
+        {
+            if (DialogBoxTemplates.ShowYesNoWarningDialogBox(CaseKeeper.AppMainForm, CloudTask_GUI.Properties.Resources.ResourceManager.GetString("DeleteCurrentCaseQuestion")) == DialogResult.Yes)
+            {
+                if (System.IO.File.Exists(CaseKeeper.CurrentCasePath))
+                {
+                    try
+                    {
+                        System.IO.File.Delete(CaseKeeper.CurrentCasePath);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        Log.Logger.WriteErrorMessage(string.Format("Can not Delete Case file!\n\tPath to case: {0}\n\tException: {1}", CaseKeeper.CurrentCasePath, ex.ToString()));
+                        DialogBoxTemplates.ShowErrorDialogBox(CaseKeeper.AppMainForm, string.Format("{0}\"{1}\"", CloudTask_GUI.Properties.Resources.ResourceManager.GetString("CaseDeletionError"), CaseKeeper.CurrentCasePath));
+                    }
+                }
+                CaseKeeper.CurrentCase = new Case();
+            }
+        }
+
+        
         #endregion Methods
     }
 }

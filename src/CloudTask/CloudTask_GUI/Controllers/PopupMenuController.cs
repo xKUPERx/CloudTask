@@ -30,7 +30,7 @@ namespace CloudTask_GUI.Controllers
                     itemToAdd.Parent = m_currentNode.Parent;
                     m_currentNode.Parent.Nodes.Add(itemToAdd);
                 }
-                CaseKeeper.CurrentCase.OnCaseUpdate();
+                CaseKeeper.OnCaseUpdate();
             }
             catch (System.Exception ex)
             {
@@ -43,7 +43,7 @@ namespace CloudTask_GUI.Controllers
             try
             {
                 m_currentNode.Parent.Nodes.Remove(m_currentNode);
-                CaseKeeper.CurrentCase.OnCaseUpdate();
+                CaseKeeper.OnCaseUpdate();
             }
             catch (System.Exception ex)
             {

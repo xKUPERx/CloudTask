@@ -39,12 +39,12 @@ namespace CloudTask_GUI
 
         private void treeListMouseDown(object sender, MouseEventArgs e)
         {
+            TreeList treeList = sender as TreeList;
+            RowInfo rowInfo = treeList.ViewInfo.GetRowInfoByPoint(e.Location);
+
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
-                m_popupMenu.ItemLinks.Clear();
-                TreeList treeList = sender as TreeList;
-                RowInfo rowInfo = treeList.ViewInfo.GetRowInfoByPoint(e.Location);
-
+                m_popupMenu.ItemLinks.Clear();               
                 m_popupMenu.ItemLinks.Add(m_barButtonsMap[GUIConstants.BAR_BUTTON_ADD_NEW_TASK_CAPTION]);
                 m_popupMenu.ItemLinks.Add(m_barButtonsMap[GUIConstants.BAR_BUTTON_ADD_NEW_CATEGORY_CAPTION]);               
                 if (rowInfo != null)
@@ -59,6 +59,10 @@ namespace CloudTask_GUI
                 }
                 m_popupMenu.ShowPopup(m_barManager, treeList.PointToScreen(e.Location));
             }
+            //else if (e.Button == System.Windows.Forms.MouseButtons.Left && rowInfo == null) // ПРи нажатии в пустое место девера левой кнопкой - открытие кейса
+            //{
+
+            //}
         }
 
         #endregion Methods

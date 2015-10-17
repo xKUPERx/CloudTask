@@ -27,7 +27,7 @@ namespace CloudTask_GUI
             :base(form)
         {            
                 m_tableGridCaseAdapter = tableGridCaseAdapter;
-                m_gridView = (DevExpress.XtraGrid.Views.Grid.GridView)m_tableGridCaseAdapter.m_currentGridControl.MainView;            
+                m_gridView = (DevExpress.XtraGrid.Views.Grid.GridView)m_tableGridCaseAdapter.CurrentGridControl.MainView;            
                 m_gridView.PopupMenuShowing += new PopupMenuShowingEventHandler(this.gridViewShowGridMenu);
         }
 
@@ -52,9 +52,13 @@ namespace CloudTask_GUI
                 if (hitInfo.InRowCell)
                 {
                     view.FocusedRowHandle = hitInfo.RowHandle;
-                    m_currentNode = ((List<Node>)view.GridControl.DataSource)[view.FocusedRowHandle];                                    
+                    m_currentNode = m_tableGridCaseAdapter.DataSourceList[view.FocusedRowHandle];
                     m_popupMenu.ItemLinks.Add(m_barButtonsMap[GUIConstants.BAR_BUTTON_DELETE_NODE_CAPTION]);
-                }              
+                }
+                else 
+                {
+                    m_currentNode = m_tableGridCaseAdapter.GetDataSourceListParent();
+                }
                 m_popupMenu.ShowPopup(m_barManager, view.GridControl.PointToScreen(e.Point));
             }
             catch (System.Exception ex)

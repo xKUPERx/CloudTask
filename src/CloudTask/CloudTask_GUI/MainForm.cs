@@ -22,14 +22,16 @@ namespace CloudTask_GUI
         {
             InitializeComponent();
                       
-            CaseKeeper.AppPath = Application.StartupPath;
+            
 
             #region tests
             FillTestCase();
             TestJsonParser();
             #endregion tests
-           
+
+            CaseKeeper.AppPath = Application.StartupPath;
             CaseKeeper.CurrentCase = m_currentCase;
+            CaseKeeper.AppMainForm = this;
             TreeListCaseAdapter treeListCaseAdapter = new TreeListCaseAdapter(treeList);
             treeList.StateImageList = sharedTreeListImageCollection;
 
