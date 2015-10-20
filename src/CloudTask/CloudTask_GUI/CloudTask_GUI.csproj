@@ -57,9 +57,12 @@
   <ItemGroup>
     <Compile Include="CloudTaskBackstageViewMenu.cs" />
     <Compile Include="CLoudTaskBasePopupMenu.cs" />
+    <Compile Include="CloudTaskTopMenu.cs" />
+    <Compile Include="Controllers\BaseCaseController.cs" />
     <Compile Include="Controllers\CaseKeeper.cs" />
     <Compile Include="Controllers\NewCaseFormController.cs" />
     <Compile Include="Controllers\PopupMenuController.cs" />
+    <Compile Include="Controllers\TopMenuController.cs" />
     <Compile Include="DialogBoxTemplates.cs" />
     <Compile Include="GUIConstants.cs" />
     <Compile Include="MainForm.cs">

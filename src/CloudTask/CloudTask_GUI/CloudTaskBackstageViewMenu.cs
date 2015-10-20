@@ -137,6 +137,7 @@ namespace CloudTask_GUI
             m_backstageViewButtonSettings.Caption = "Settings";
             m_backstageViewButtonSettings.Glyph = global::CloudTask_GUI.Properties.Resources.technology_32x32;
             m_backstageViewButtonSettings.Name = "backstageViewButtonSettings";
+            m_backstageViewButtonSettings.Visible = false;
             // 
             // backstageViewItemSeparator1
             // 

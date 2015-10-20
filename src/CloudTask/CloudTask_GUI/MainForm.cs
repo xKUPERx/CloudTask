@@ -49,7 +49,13 @@ namespace CloudTask_GUI
 
             tableGridPopupMenu = new TableGridPopupMenu(this, tableGridCaseAdapter); //Create popup menu
             treeListPopupMenu = new TreeListPopupMenu(this, treeListCaseAdapter);
-            cloudTaskBackstageViewMenu = new CloudTaskBackstageViewMenu(this, ribbonControl1);
+            cloudTaskBackstageViewMenu = new CloudTaskBackstageViewMenu(this, ribbonControlTopMenu);
+
+            Controllers.TopMenuController m_topMenuController; m_topMenuController = new Controllers.TopMenuController();
+            this.barButtonItemSaveCase.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(m_topMenuController.SaveCaseClick);
+            this.barButtonItemOpenCase.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(m_topMenuController.OpenCaseClick);
+            this.barButtonItemNewCase.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(m_topMenuController.NewCaseClick);
+            
             
         }
 
