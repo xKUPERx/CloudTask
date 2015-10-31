@@ -35,8 +35,6 @@ namespace CloudTask_GUI.Controllers
 
         ~TreeListCaseAdapter()
         {
-            m_treeList.GetStateImage -= new DevExpress.XtraTreeList.GetStateImageEventHandler(this.TreeListGetStateImage);
-            m_treeList.DragDrop -= new System.Windows.Forms.DragEventHandler(this.treeList1_DragDrop);
             CaseKeeper.CaseUpdate -= new CaseKeeper.CaseUpdateEventHandler(this.OnCaseUpdate);
         }
         #endregion Constructors
@@ -59,11 +57,11 @@ namespace CloudTask_GUI.Controllers
         void TreeList.IVirtualTreeListData.VirtualTreeGetCellValue(
         VirtualTreeGetCellValueInfo info)
         {
-            if (info.Column.FieldName == GUIConstants.TREE_LIST_NAME_COLUMN)
+            if (info.Column.FieldName == GUIConstants.TreeListNameColumn)
             {
                 info.CellData = ((INode)info.Node).NodeName;
             }
-            else if (info.Column.FieldName == GUIConstants.TREE_LIST_ORIGINAL_NOTE_COLUMN)
+            else if (info.Column.FieldName == GUIConstants.TreeListOriginalNoteColumnName)
             {
                 info.CellData = (INode)info.Node;
             }
@@ -76,7 +74,7 @@ namespace CloudTask_GUI.Controllers
 
         public void TreeListGetStateImage(object sender, GetStateImageEventArgs e)
         {
-            INode nodeData = e.Node.GetValue(GUIConstants.TREE_LIST_ORIGINAL_NOTE_COLUMN) as INode;
+            INode nodeData = e.Node.GetValue(GUIConstants.TreeListOriginalNoteColumnName) as INode;
             if (nodeData != null)
             {
                 e.NodeImageIndex = nodeData.StateImageIndex;
@@ -102,8 +100,8 @@ namespace CloudTask_GUI.Controllers
                 dragNode = e.Data.GetData(typeof(TreeListNode)) as TreeListNode;
                 targetNode = treeList.CalcHitInfo(p).Node;
 
-                IdragNode = (e.Data.GetData(typeof(TreeListNode)) as TreeListNode).GetValue(GUIConstants.TREE_LIST_ORIGINAL_NOTE_COLUMN) as INode;
-                ItargetNode = (treeList.CalcHitInfo(p).Node).GetValue(GUIConstants.TREE_LIST_ORIGINAL_NOTE_COLUMN) as INode;
+                IdragNode = (e.Data.GetData(typeof(TreeListNode)) as TreeListNode).GetValue(GUIConstants.TreeListOriginalNoteColumnName) as INode;
+                ItargetNode = (treeList.CalcHitInfo(p).Node).GetValue(GUIConstants.TreeListOriginalNoteColumnName) as INode;
 
                 if (IdragNode != null && ItargetNode != null && ItargetNode is BaseContainerNode)
                 {

@@ -42,7 +42,7 @@ namespace CloudTask_GUI.Controllers
 
         public void TreeListFocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
         {
-            Node m_currentNote = e.Node.GetValue(GUIConstants.TREE_LIST_ORIGINAL_NOTE_COLUMN) as Node;
+            Node m_currentNote = e.Node.GetValue(GUIConstants.TreeListOriginalNoteColumnName) as Node;
             if (m_currentNote != null)
             {
                 UpdateContolsData(m_currentNote);

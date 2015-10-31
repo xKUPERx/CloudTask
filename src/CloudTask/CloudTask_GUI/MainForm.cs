@@ -51,11 +51,11 @@ namespace CloudTask_GUI
             treeListPopupMenu = new TreeListPopupMenu(this, treeListCaseAdapter);
             cloudTaskBackstageViewMenu = new CloudTaskBackstageViewMenu(this, ribbonControlTopMenu);
 
-            Controllers.TopMenuController m_topMenuController; m_topMenuController = new Controllers.TopMenuController();
+            TopMenuController m_topMenuController; m_topMenuController = new Controllers.TopMenuController();
             this.barButtonItemSaveCase.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(m_topMenuController.SaveCaseClick);
             this.barButtonItemOpenCase.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(m_topMenuController.OpenCaseClick);
             this.barButtonItemNewCase.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(m_topMenuController.NewCaseClick);
-            
+            this.barButtonItemTestDrive.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(m_topMenuController.TestDriveClick);
             
         }
 

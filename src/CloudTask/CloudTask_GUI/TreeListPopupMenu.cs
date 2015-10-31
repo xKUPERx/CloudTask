@@ -45,13 +45,13 @@ namespace CloudTask_GUI
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 m_popupMenu.ItemLinks.Clear();               
-                m_popupMenu.ItemLinks.Add(m_barButtonsMap[GUIConstants.BAR_BUTTON_ADD_NEW_TASK_CAPTION]);
-                m_popupMenu.ItemLinks.Add(m_barButtonsMap[GUIConstants.BAR_BUTTON_ADD_NEW_CATEGORY_CAPTION]);               
+                m_popupMenu.ItemLinks.Add(m_barButtonsMap[GUIConstants.BarButtonAddNewTaskCaption]);
+                m_popupMenu.ItemLinks.Add(m_barButtonsMap[GUIConstants.BarButtonAddNewCategoryCaption]);               
                 if (rowInfo != null)
                 {
-                    m_currentNode = rowInfo.Node.GetValue(GUIConstants.TREE_LIST_ORIGINAL_NOTE_COLUMN) as INode;
+                    m_currentNode = rowInfo.Node.GetValue(GUIConstants.TreeListOriginalNoteColumnName) as INode;
                     treeList.FocusedNode = rowInfo.Node;
-                    m_popupMenu.ItemLinks.Add(m_barButtonsMap[GUIConstants.BAR_BUTTON_DELETE_NODE_CAPTION]);
+                    m_popupMenu.ItemLinks.Add(m_barButtonsMap[GUIConstants.BarButtonDeleteNodeCaption]);
                 }
                 else 
                 {

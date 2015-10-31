@@ -11,12 +11,14 @@ namespace CloudTask_GUI.Controllers
     {
         #region Members
         private BaseCaseController baseCaseController;
+        private OneDriveController oneDriveController;
         #endregion Members
 
         #region Constructors
         public TopMenuController()
         {
             baseCaseController = new BaseCaseController();
+            oneDriveController = new OneDriveController();
         }
         #endregion Constructors
 
@@ -35,6 +37,11 @@ namespace CloudTask_GUI.Controllers
         public void SaveCaseClick(object sender, ItemClickEventArgs e)
         {
             baseCaseController.SaveCase();
+        }
+
+        public void TestDriveClick(object sender, ItemClickEventArgs e)
+        {
+            oneDriveController.Show();
         }
         #endregion Delegates
     }

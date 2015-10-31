@@ -16,6 +16,7 @@ namespace CloudTask_Model
         public INodeCollection() { }
         public INodeCollection(INode node) { this.Add(node); }
         public INodeCollection(IEnumerable value) { this.AddRange(value); }
+        private object m_lockObject;
 
         public INode this[int index]
         {
@@ -74,7 +75,7 @@ namespace CloudTask_Model
 
         public void Sort(bool containersFirst)
         {
-            lock (this)
+            lock (m_lockObject)
             {
                 ArrayList nodes = new ArrayList();
 
@@ -97,7 +98,7 @@ namespace CloudTask_Model
 
         public void Sort(IComparer comparer)
         {
-            lock (this)
+            lock (m_lockObject)
             {
                 ArrayList nodes = new ArrayList(List);
                 nodes.Sort(comparer);

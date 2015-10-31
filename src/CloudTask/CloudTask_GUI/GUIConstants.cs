@@ -8,18 +8,18 @@ namespace CloudTask_GUI
 {
     public static class GUIConstants
     {
-        public const string TREE_LIST_NAME = "treeList";
-        public const string TREE_LIST_NAME_COLUMN = "Name";
-        public const string TREE_LIST_ORIGINAL_NOTE_COLUMN = "Original Note";
+        public const string TreeListName = "treeList";
+        public const string TreeListNameColumn = "Name";
+        public const string TreeListOriginalNoteColumnName = "Original Note";
 
-        public const string GRID_NOTE_NAME_COLUMN_FIELD_NAME = "Name";
-        public const string GRID_NOTE_NAME_COLUMN_NAME = "noteNameColumn";
-        public const string GRID_ORIGINAL_NOTE_COLUMN_FIELD_NAME = "Original Note";
-        public const string GRID_ORIGINAL_NOTE_COLUMN_NAME = "originalNoteColumn";
+        public const string GridNoteNameColumnFieldName = "Name";
+        public const string GridNoteNameColumnName = "noteNameColumn";
+        public const string GridOriginalNoteColumnFieldName = "Original Note";
+        public const string GridOriginalNoteColumnName = "originalNoteColumn";
 
-        public static string BAR_BUTTON_ADD_NEW_TASK_CAPTION { get {return CloudTask_GUI.Properties.Resources.ResourceManager.GetString("barButtonAddNewTask_Caption"); } }
-        public static string BAR_BUTTON_DELETE_NODE_CAPTION { get { return CloudTask_GUI.Properties.Resources.ResourceManager.GetString("barButtonDelete_Caption"); } }
-        public static string BAR_BUTTON_ADD_NEW_CATEGORY_CAPTION { get { return CloudTask_GUI.Properties.Resources.ResourceManager.GetString("barButtonAddNewCategory_Caption"); } }
+        public static string BarButtonAddNewTaskCaption { get {return CloudTask_GUI.Properties.Resources.ResourceManager.GetString("barButtonAddNewTask_Caption"); } }
+        public static string BarButtonDeleteNodeCaption { get { return CloudTask_GUI.Properties.Resources.ResourceManager.GetString("barButtonDelete_Caption"); } }
+        public static string BarButtonAddNewCategoryCaption { get { return CloudTask_GUI.Properties.Resources.ResourceManager.GetString("barButtonAddNewCategory_Caption"); } }
         
 
     }

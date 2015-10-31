@@ -40,28 +40,28 @@ namespace CloudTask_GUI
                 // CreateNewTask
                 //
                 DevExpress.XtraBars.BarButtonItem m_barButtonAddNewTask = new BarButtonItem();
-                m_barButtonAddNewTask.Caption = GUIConstants.BAR_BUTTON_ADD_NEW_TASK_CAPTION;              
+                m_barButtonAddNewTask.Caption = GUIConstants.BarButtonAddNewTaskCaption;              
                 m_barButtonAddNewTask.Id = 0;
                 m_barButtonAddNewTask.Name = "barButtonAddNewTask";
-                m_barButtonsMap[GUIConstants.BAR_BUTTON_ADD_NEW_TASK_CAPTION] = m_barButtonAddNewTask;
+                m_barButtonsMap[GUIConstants.BarButtonAddNewTaskCaption] = m_barButtonAddNewTask;
                 // 
                 // CreateNewCategory
                 //
                 DevExpress.XtraBars.BarButtonItem m_barButtonAddNewCategory = new BarButtonItem();
-                m_barButtonAddNewCategory.Caption = GUIConstants.BAR_BUTTON_ADD_NEW_CATEGORY_CAPTION;
+                m_barButtonAddNewCategory.Caption = GUIConstants.BarButtonAddNewCategoryCaption;
                 m_barButtonAddNewCategory.Id = 0;
                 m_barButtonAddNewCategory.Name = "barButtonAddNewTask";
-                m_barButtonsMap[GUIConstants.BAR_BUTTON_ADD_NEW_CATEGORY_CAPTION] = m_barButtonAddNewCategory;
+                m_barButtonsMap[GUIConstants.BarButtonAddNewCategoryCaption] = m_barButtonAddNewCategory;
                 // 
                 // DeleteNode
                 //
                 DevExpress.XtraBars.BarButtonItem m_barButtonDeleteElement = new BarButtonItem();
-                m_barButtonDeleteElement.Caption = GUIConstants.BAR_BUTTON_DELETE_NODE_CAPTION;
+                m_barButtonDeleteElement.Caption = GUIConstants.BarButtonDeleteNodeCaption;
                 m_barButtonDeleteElement.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonDeleteTask.Glyph")));
                 m_barButtonDeleteElement.Id = 1;
                 m_barButtonDeleteElement.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonDeleteTask.LargeGlyph")));
                 m_barButtonDeleteElement.Name = "barButtonDeleteTask";
-                m_barButtonsMap[GUIConstants.BAR_BUTTON_DELETE_NODE_CAPTION] = m_barButtonDeleteElement;
+                m_barButtonsMap[GUIConstants.BarButtonDeleteNodeCaption] = m_barButtonDeleteElement;
              
                 ((System.ComponentModel.ISupportInitialize)(this.m_popupMenu)).EndInit();
                 ((System.ComponentModel.ISupportInitialize)(this.m_barManager)).EndInit();
@@ -73,15 +73,15 @@ namespace CloudTask_GUI
 
         private void barManagerItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-                if (e.Item.Caption == GUIConstants.BAR_BUTTON_ADD_NEW_TASK_CAPTION)
+                if (e.Item.Caption == GUIConstants.BarButtonAddNewTaskCaption)
                 {
                     controller.AddNewNodeClicked<Node>(m_currentNode);
                 }
-                else if (e.Item.Caption == GUIConstants.BAR_BUTTON_ADD_NEW_CATEGORY_CAPTION)
+                else if (e.Item.Caption == GUIConstants.BarButtonAddNewCategoryCaption)
                 {
                     controller.AddNewNodeClicked<Category>(m_currentNode);
                 }
-                else if (e.Item.Caption == GUIConstants.BAR_BUTTON_DELETE_NODE_CAPTION)
+                else if (e.Item.Caption == GUIConstants.BarButtonDeleteNodeCaption)
                 {
                     controller.DeleteNode(m_currentNode);
                 }

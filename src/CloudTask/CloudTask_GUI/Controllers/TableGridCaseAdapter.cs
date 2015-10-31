@@ -46,7 +46,7 @@ namespace CloudTask_GUI.Controllers
 
         public void TreeListFocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
         {
-            m_currentNode = e.Node.GetValue(GUIConstants.TREE_LIST_ORIGINAL_NOTE_COLUMN) as INode;
+            m_currentNode = e.Node.GetValue(GUIConstants.TreeListOriginalNoteColumnName) as INode;
             if (m_currentNode != null)
             {
                 INodeCollection nodesList = null;

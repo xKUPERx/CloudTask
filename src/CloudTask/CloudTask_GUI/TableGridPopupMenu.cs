@@ -48,12 +48,12 @@ namespace CloudTask_GUI
                 GridView view = sender as GridView;
                 GridHitInfo hitInfo = view.CalcHitInfo(e.Point);
 
-                m_popupMenu.ItemLinks.Add(m_barButtonsMap[GUIConstants.BAR_BUTTON_ADD_NEW_TASK_CAPTION]);
+                m_popupMenu.ItemLinks.Add(m_barButtonsMap[GUIConstants.BarButtonAddNewTaskCaption]);
                 if (hitInfo.InRowCell)
                 {
                     view.FocusedRowHandle = hitInfo.RowHandle;
                     m_currentNode = m_tableGridCaseAdapter.DataSourceList[view.FocusedRowHandle];
-                    m_popupMenu.ItemLinks.Add(m_barButtonsMap[GUIConstants.BAR_BUTTON_DELETE_NODE_CAPTION]);
+                    m_popupMenu.ItemLinks.Add(m_barButtonsMap[GUIConstants.BarButtonDeleteNodeCaption]);
                 }
                 else 
                 {

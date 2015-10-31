@@ -47,7 +47,7 @@ namespace CloudTask_GUI.Controllers
                 {
                     SaveCase();
                 }
-                Application.Exit();
+                CaseKeeper.AppMainForm.Close();
             }
         }
 

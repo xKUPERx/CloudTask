@@ -22,11 +22,6 @@ namespace CloudTask_GUI.Controllers
             m_newCaseForm.simpleButtonCancel.Click += new EventHandler(this.ButtonCancelClicked);
         }
 
-        ~NewCaseFormController()
-        {
-            m_newCaseForm.simpleButtonOk.Click -= new EventHandler(this.ButtonOkClicked);
-            m_newCaseForm.simpleButtonCancel.Click -= new EventHandler(this.ButtonCancelClicked);
-        }
         #endregion Constructors
 
         #region Methods

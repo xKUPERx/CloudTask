@@ -62,8 +62,10 @@ namespace CloudTask_GUI
             this.barButtonItemSaveCase = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemOpenCase = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemNewCase = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemTestDrive = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageHome = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroupFile = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroupOneDrive = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -258,7 +260,7 @@ namespace CloudTask_GUI
             // 
             this.textEditTaskName.Location = new System.Drawing.Point(113, 26);
             this.textEditTaskName.Name = "textEditTaskName";
-            this.textEditTaskName.Size = new System.Drawing.Size(181, 20);
+            this.textEditTaskName.Size = new System.Drawing.Size(180, 20);
             this.textEditTaskName.TabIndex = 5;
             // 
             // labelIsDone
@@ -316,9 +318,10 @@ namespace CloudTask_GUI
             this.barButtonItem1,
             this.barButtonItemSaveCase,
             this.barButtonItemOpenCase,
-            this.barButtonItemNewCase});
+            this.barButtonItemNewCase,
+            this.barButtonItemTestDrive});
             this.ribbonControlTopMenu.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControlTopMenu.MaxItemId = 5;
+            this.ribbonControlTopMenu.MaxItemId = 6;
             this.ribbonControlTopMenu.Name = "ribbonControlTopMenu";
             this.ribbonControlTopMenu.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPageHome});
@@ -353,10 +356,17 @@ namespace CloudTask_GUI
             this.barButtonItemNewCase.Id = 4;
             this.barButtonItemNewCase.Name = "barButtonItemNewCase";
             // 
+            // barButtonItemTestDrive
+            // 
+            this.barButtonItemTestDrive.Caption = "TestDrive";
+            this.barButtonItemTestDrive.Id = 5;
+            this.barButtonItemTestDrive.Name = "barButtonItemTestDrive";
+            // 
             // ribbonPageHome
             // 
             this.ribbonPageHome.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroupFile});
+            this.ribbonPageGroupFile,
+            this.ribbonPageGroupOneDrive});
             this.ribbonPageHome.Name = "ribbonPageHome";
             this.ribbonPageHome.Text = "Home";
             // 
@@ -367,6 +377,14 @@ namespace CloudTask_GUI
             this.ribbonPageGroupFile.ItemLinks.Add(this.barButtonItemSaveCase);
             this.ribbonPageGroupFile.Name = "ribbonPageGroupFile";
             this.ribbonPageGroupFile.Text = "File";
+            // 
+            // ribbonPageGroupOneDrive
+            // 
+            this.ribbonPageGroupOneDrive.Enabled = false;
+            this.ribbonPageGroupOneDrive.ItemLinks.Add(this.barButtonItemTestDrive);
+            this.ribbonPageGroupOneDrive.Name = "ribbonPageGroupOneDrive";
+            this.ribbonPageGroupOneDrive.Text = "OneDrive";
+            this.ribbonPageGroupOneDrive.Visible = false;
             // 
             // barDockControlTop
             // 
@@ -475,6 +493,8 @@ namespace CloudTask_GUI
         private DevExpress.XtraBars.BarButtonItem barButtonItemSaveCase;
         private DevExpress.XtraBars.BarButtonItem barButtonItemOpenCase;
         private DevExpress.XtraBars.BarButtonItem barButtonItemNewCase;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemTestDrive;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupOneDrive;
 
         
 
