@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewCaseForm));
             this.textEditNewCaseName = new DevExpress.XtraEditors.TextEdit();
             this.labelControlNewCaseName = new DevExpress.XtraEditors.LabelControl();
             this.simpleButtonOk = new DevExpress.XtraEditors.SimpleButton();
@@ -75,6 +76,7 @@
             this.Controls.Add(this.simpleButtonOk);
             this.Controls.Add(this.labelControlNewCaseName);
             this.Controls.Add(this.textEditNewCaseName);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NewCaseForm";
             this.Text = "NewCaseForm";
             ((System.ComponentModel.ISupportInitialize)(this.textEditNewCaseName.Properties)).EndInit();
