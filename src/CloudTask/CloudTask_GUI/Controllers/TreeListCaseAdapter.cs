@@ -15,6 +15,8 @@ namespace CloudTask_GUI.Controllers
     public class TreeListCaseAdapter : TreeList.IVirtualTreeListData
     {
         #region Members
+        public delegate void FocusedNodeChanged(object sender, INode inode);
+        public event FocusedNodeChanged focusedNodeChanged;
 
         public DevExpress.XtraTreeList.TreeList m_treeList { get; private set; }
 
@@ -28,9 +30,10 @@ namespace CloudTask_GUI.Controllers
             m_treeList.DataSource = this;
             CaseKeeper.CaseUpdate += new CaseKeeper.CaseUpdateEventHandler(this.OnCaseUpdate);
             m_treeList.GetStateImage += new DevExpress.XtraTreeList.GetStateImageEventHandler(this.TreeListGetStateImage);
-            m_treeList.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeList1_DragDrop);
+            m_treeList.DragDrop += new System.Windows.Forms.DragEventHandler(this.TreeListDragDrop);
             m_treeList.DragNodesMode = TreeListDragNodesMode.Advanced;
-            m_treeList.OptionsBehavior.DragNodes = true;      
+            m_treeList.OptionsBehavior.DragNodes = true;
+            treeList.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.TreeListFocusedNodeChanged);
         }
 
         ~TreeListCaseAdapter()
@@ -87,10 +90,11 @@ namespace CloudTask_GUI.Controllers
             m_treeList.RefreshDataSource();
         }
 
-        private void treeList1_DragDrop(object sender, System.Windows.Forms.DragEventArgs e)
+        private void TreeListDragDrop(object sender, System.Windows.Forms.DragEventArgs e)
         {
             try
             {
+                e.Effect = System.Windows.Forms.DragDropEffects.None;
                 TreeListNode dragNode, targetNode;
                 INode IdragNode, ItargetNode;
                 TreeList treeList = sender as TreeList;
@@ -103,21 +107,37 @@ namespace CloudTask_GUI.Controllers
                 IdragNode = (e.Data.GetData(typeof(TreeListNode)) as TreeListNode).GetValue(GUIConstants.TreeListOriginalNoteColumnName) as INode;
                 ItargetNode = (treeList.CalcHitInfo(p).Node).GetValue(GUIConstants.TreeListOriginalNoteColumnName) as INode;
 
-                if (IdragNode != null && ItargetNode != null && ItargetNode is BaseContainerNode)
+                if (IdragNode != null && ItargetNode != null && ItargetNode.IsContainer)
                 {
 
                     IdragNode.Parent.Nodes.Remove(IdragNode);
                     ItargetNode.Nodes.Add(IdragNode);
                     IdragNode.Parent = ItargetNode;
                     treeList.SetNodeIndex(dragNode, treeList.GetNodeIndex(targetNode));
-                    e.Effect = System.Windows.Forms.DragDropEffects.None;
+                    //e.Effect = System.Windows.Forms.DragDropEffects.Link;
                     CaseKeeper.OnCaseUpdate();
                 }
-
             }
             catch (System.Exception ex)
             {
                 Log.Logger.WriteErrorMessage(string.Format("DragandDrop exception in TreeListCaseAdapter, exception:\n\t{0}", ex.ToString()));
+            }
+        }
+
+        private void TreeListFocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
+        {
+            INode inode = e.Node.GetValue(GUIConstants.TreeListOriginalNoteColumnName) as INode;
+            if (inode != null)
+            {
+                OnFocusedNodeChanged(inode);
+            }
+        }
+
+        public void OnFocusedNodeChanged(INode inode)
+        {
+            if (focusedNodeChanged != null)
+            {
+                focusedNodeChanged(this, inode);
             }
         }
         #endregion Methods

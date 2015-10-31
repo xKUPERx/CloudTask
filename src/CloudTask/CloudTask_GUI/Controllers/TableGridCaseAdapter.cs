@@ -44,13 +44,13 @@ namespace CloudTask_GUI.Controllers
 
         #region Methods
 
-        public void TreeListFocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
+        public void TreeListFocusedNodeChanged(object sender, INode inode)
         {
-            m_currentNode = e.Node.GetValue(GUIConstants.TreeListOriginalNoteColumnName) as INode;
+            m_currentNode = inode;
             if (m_currentNode != null)
             {
                 INodeCollection nodesList = null;
-                if (m_currentNode is BaseContainerNode)
+                if (m_currentNode is BaseContainerNode || m_currentNode is Case)
                 {
                     nodesList = m_currentNode.Nodes;
                 }

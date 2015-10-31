@@ -59,10 +59,10 @@ namespace CloudTask_GUI
                 }
                 m_popupMenu.ShowPopup(m_barManager, treeList.PointToScreen(e.Location));
             }
-            //else if (e.Button == System.Windows.Forms.MouseButtons.Left && rowInfo == null) // ПРи нажатии в пустое место девера левой кнопкой - открытие кейса
-            //{
-
-            //}
+            else if (e.Button == System.Windows.Forms.MouseButtons.Left && rowInfo == null) // ПРи нажатии в пустое место девера левой кнопкой - открытие кейса
+            {
+                m_treeListCaseAdapter.OnFocusedNodeChanged(Controllers.CaseKeeper.CurrentCase);
+            }
         }
 
         #endregion Methods

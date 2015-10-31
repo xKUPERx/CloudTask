@@ -38,8 +38,8 @@ namespace CloudTask_GUI
             //mainGridView.Images = sharedTreeListImageCollection;
             //mainGridView.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(tableGridCaseAdapter.gridView_CustomUnboundColumnData); image in grid
             TableGridCaseAdapter tableGridCaseAdapter = new TableGridCaseAdapter(mainGridControl);
-            
-            treeList.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(tableGridCaseAdapter.TreeListFocusedNodeChanged);
+
+            treeListCaseAdapter.focusedNodeChanged += new TreeListCaseAdapter.FocusedNodeChanged(tableGridCaseAdapter.TreeListFocusedNodeChanged);
 
             xtraTabControlCaseAdapter propertiesControlCaseAdapter = new xtraTabControlCaseAdapter(xtraTabControlNodesProperties);
             propertiesControlCaseAdapter.SetupControls();
