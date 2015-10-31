@@ -105,6 +105,9 @@ namespace CloudTask_GUI
             this.originalNoteColumn});
             this.treeList.Location = new System.Drawing.Point(0, 148);
             this.treeList.Name = "treeList";
+            this.treeList.OptionsView.ShowHorzLines = false;
+            this.treeList.OptionsView.ShowIndicator = false;
+            this.treeList.OptionsView.ShowVertLines = false;
             this.treeList.Size = new System.Drawing.Size(342, 566);
             this.treeList.TabIndex = 1;
             // 
@@ -153,6 +156,10 @@ namespace CloudTask_GUI
             this.IsDone});
             this.mainGridView.GridControl = this.mainGridControl;
             this.mainGridView.Name = "mainGridView";
+            this.mainGridView.OptionsCustomization.AllowGroup = false;
+            this.mainGridView.OptionsView.ShowGroupPanel = false;
+            this.mainGridView.OptionsBehavior.AutoPopulateColumns = false;
+            this.mainGridView.OptionsView.ShowIndicator = false;
             // 
             // NodeName
             // 

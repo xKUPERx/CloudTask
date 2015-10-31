@@ -35,7 +35,6 @@ namespace CloudTask_GUI
             TreeListCaseAdapter treeListCaseAdapter = new TreeListCaseAdapter(treeList);
             treeList.StateImageList = sharedTreeListImageCollection;
 
-            mainGridView.OptionsBehavior.AutoPopulateColumns = false;
             //mainGridView.Images = sharedTreeListImageCollection;
             //mainGridView.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(tableGridCaseAdapter.gridView_CustomUnboundColumnData); image in grid
             TableGridCaseAdapter tableGridCaseAdapter = new TableGridCaseAdapter(mainGridControl);
