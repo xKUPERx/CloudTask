@@ -16,7 +16,7 @@ namespace CloudTask_Model
         public INodeCollection() { }
         public INodeCollection(INode node) { this.Add(node); }
         public INodeCollection(IEnumerable value) { this.AddRange(value); }
-        private object m_lockObject;
+        private object m_lockObject = new object();
 
         public INode this[int index]
         {
